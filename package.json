@@ -3,7 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "compile": "tsc",
+    "clean-dist": "rimraf dist",
+    "build": "yarn clean-dist && yarn compile --",
+    "watch": "yarn build -- -w",
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "ios": "yarn build && concurrently -r 'yarn watch' 'node node_modules/react-native/local-cli/cli.js run-ios'",
     "test": "jest"
   },
   "dependencies": {
@@ -12,5 +17,13 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "devDependencies": {
+    "@types/react": "^16.0.33",
+    "@types/react-native": "^0.51.8",
+    "concurrently": "^3.5.1",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
   }
 }
