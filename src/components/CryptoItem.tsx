@@ -19,33 +19,33 @@ export default class CryptoItem extends Component<Props, State> {
       <View style={styles.item}>
         <View style={styles.itemSummary}>
           <View style={styles.nameSymbol}>
-            <Text style={styles.name}>{data.symbol}</Text>
+            <Text style={styles.symbol}>{data.symbol}</Text>
             <Text style={styles.name}> | {data.name}</Text>
           </View>
           <Text style={styles.price}>$ {data.price_usd}</Text>
         </View>
         <View style={styles.itemDetails}>
           <View style={styles.hourlyChange}>
-            <Text style={styles.changeLabel}>Hourly Change: </Text>
+            <Text style={styles.changeLabel}>Hourly: </Text>
             {Number.parseFloat(data.percent_change_1h) > 0 ? (
               <Text style={styles.changePositive}>
-                {data.percent_change_1h}
+                {data.percent_change_1h}%
               </Text>
             ) : (
               <Text style={styles.changeNegative}>
-                {data.percent_change_1h}
+                {data.percent_change_1h}%
               </Text>
             )}
           </View>
           <View style={styles.hourlyChange}>
-            <Text style={styles.changeLabel}>Daily Change: </Text>
+            <Text style={styles.changeLabel}>Daily: </Text>
             {Number.parseFloat(data.percent_change_24h) > 0 ? (
               <Text style={styles.changePositive}>
-                {data.percent_change_24h}
+                {data.percent_change_24h}%
               </Text>
             ) : (
               <Text style={styles.changeNegative}>
-                {data.percent_change_24h}
+                {data.percent_change_24h}%
               </Text>
             )}
           </View>

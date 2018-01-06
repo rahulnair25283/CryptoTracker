@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TimerMixin from "react-timer-mixin";
 import { FlatList, Text, View } from "react-native";
 import { Crypto } from "../model";
 import CryptoItem from "./CryptoItem";
@@ -11,6 +12,7 @@ interface State {
 }
 
 export default class CryptoList extends Component<Props, State> {
+  private timer;
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -20,15 +22,21 @@ export default class CryptoList extends Component<Props, State> {
   }
 
   public componentDidMount() {
-    return fetch("https://api.coinmarketcap.com/v1/ticker/")
-      .then(response => response.json())
-      .then(responseJson =>
-        this.setState({
-          loading: false,
-          data: responseJson,
-        })
-      )
-      .catch(err => console.log(err));
+    this.timer = TimerMixin.setInterval(() => {
+      return fetch("https://api.coinmarketcap.com/v1/ticker/")
+        .then(response => response.json())
+        .then(responseJson =>
+          this.setState({
+            loading: false,
+            data: responseJson,
+          })
+        )
+        .catch(err => console.log(err));
+    }, 1000);
+  }
+
+  public componentWillUnmount() {
+    TimerMixin.clearInterval(this.timer);
   }
 
   public render() {
@@ -48,15 +56,13 @@ export default class CryptoList extends Component<Props, State> {
 
   private renderItem = ({ item }) => <CryptoItem data={item} />;
 
-  private keyExtractor = (item) => item.id;
+  private keyExtractor = item => item.id;
 
   private renderHeader = () => (
     <View style={styles.header}>
       <Text style={styles.headerText}>Cryptocurrencies</Text>
     </View>
-  )
+  );
 
-  private renderSeparator = () => (
-      <View style={styles.separator}/>
-  )
+  private renderSeparator = () => <View style={styles.separator} />;
 }

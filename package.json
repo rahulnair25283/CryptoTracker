@@ -8,8 +8,7 @@
     "build": "yarn clean-dist && yarn compile --",
     "watch": "yarn build -- -w",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "ios":
-      "yarn build && concurrently -r 'yarn watch' 'node node_modules/react-native/local-cli/cli.js run-ios'",
+    "ios": "yarn build && concurrently -r 'yarn watch' 'node node_modules/react-native/local-cli/cli.js run-ios'",
     "test": "jest"
   },
   "dependencies": {
@@ -19,6 +18,7 @@
     "react": "16.0.0",
     "react-native": "0.51.0",
     "react-redux": "^5.0.6",
+    "react-timer-mixin": "^0.13.3",
     "redux": "^3.7.2",
     "redux-persist": "^5.4.0"
   },
@@ -34,6 +34,8 @@
     "typescript": "^2.6.2"
   },
   "rnpm": {
-    "assets": ["./assets/fonts/"]
+    "assets": [
+      "./assets/fonts/"
+    ]
   }
 }
