@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { FlatList, Text } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { Crypto } from "../model";
 import CryptoItem from "./CryptoItem";
+import styles from "./styles";
 
 interface Props {}
 interface State {
@@ -29,16 +30,33 @@ export default class CryptoList extends Component<Props, State> {
       )
       .catch(err => console.log(err));
   }
+
   public render() {
     return (
-      <FlatList
-        data={this.state.data}
-        keyExtractor={this.keyExtractor}
-        renderItem={this.renderItem}
-      />
+      <View style={styles.container}>
+        <FlatList
+          data={this.state.data}
+          keyExtractor={this.keyExtractor}
+          ListHeaderComponent={this.renderHeader}
+          renderItem={this.renderItem}
+          ItemSeparatorComponent={this.renderSeparator}
+          stickyHeaderIndices={[0]}
+        />
+      </View>
     );
   }
 
   private renderItem = ({ item }) => <CryptoItem data={item} />;
-  private keyExtractor = (item, index) => item.id;
+
+  private keyExtractor = (item) => item.id;
+
+  private renderHeader = () => (
+    <View style={styles.header}>
+      <Text style={styles.headerText}>Cryptocurrencies</Text>
+    </View>
+  )
+
+  private renderSeparator = () => (
+      <View style={styles.separator}/>
+  )
 }

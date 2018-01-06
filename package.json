@@ -8,7 +8,8 @@
     "build": "yarn clean-dist && yarn compile --",
     "watch": "yarn build -- -w",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "ios": "yarn build && concurrently -r 'yarn watch' 'node node_modules/react-native/local-cli/cli.js run-ios'",
+    "ios":
+      "yarn build && concurrently -r 'yarn watch' 'node node_modules/react-native/local-cli/cli.js run-ios'",
     "test": "jest"
   },
   "dependencies": {
@@ -31,5 +32,8 @@
     "rimraf": "^2.6.2",
     "tslint": "^5.8.0",
     "typescript": "^2.6.2"
+  },
+  "rnpm": {
+    "assets": ["./assets/fonts/"]
   }
 }
