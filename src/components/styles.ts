@@ -17,30 +17,40 @@ const styles = StyleSheet.create({
     shadowOffset: { height: 1, width: 0 },
   },
   headerText: {
-    fontSize: 22,
+    fontSize: 18,
     fontFamily: "lato",
     color: "#fffaff",
   },
   separator: {
     height: 0.5,
-    backgroundColor: "#303036",
+    backgroundColor: "#fc5130",
     marginLeft: "3%",
     marginRight: "3%",
   },
   item: {
     display: "flex",
     flexDirection: "column",
-    padding: 25,
+    padding: 20,
     backgroundColor: "#FAFFFD",
   },
   itemSummary: {
     display: "flex",
     flexDirection: "row",
   },
+  icon: {
+    justifyContent: "center",
+    alignItems: "center",
+    top: -5,
+  },
+  iconImage: {
+    height: 30,
+    width: 30,
+  },
   nameSymbol: {
     display: "flex",
     flexDirection: "row",
-    width: 180,
+    width: 150,
+    left: 10,
   },
   symbol: {
     fontFamily: "lato",
@@ -60,14 +70,15 @@ const styles = StyleSheet.create({
     color: "#303036",
   },
   itemDetails: {
-    top: 10,
+    top: 5,
+    left: 40,
     display: "flex",
     flexDirection: "row",
   },
   hourlyChange: {
     display: "flex",
     flexDirection: "row",
-    width: 230,
+    width: 190,
   },
   changeLabel: {
     fontFamily: "lato",

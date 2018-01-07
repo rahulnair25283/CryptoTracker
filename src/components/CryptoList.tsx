@@ -4,6 +4,7 @@ import { FlatList, Text, View } from "react-native";
 import { Crypto } from "../model";
 import CryptoItem from "./CryptoItem";
 import styles from "./styles";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface Props {}
 interface State {
@@ -61,6 +62,9 @@ export default class CryptoList extends Component<Props, State> {
   private renderHeader = () => (
     <View style={styles.header}>
       <Text style={styles.headerText}>Cryptocurrencies</Text>
+      <View style={{left: 95, justifyContent: "center", alignItems: "center"}}>
+         <Icon name="search" color="#ffffff" size={20} />
+      </View>
     </View>
   );
 
