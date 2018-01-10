@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "postinstall": "tsc",
     "compile": "tsc",
     "clean-dist": "rimraf dist",
     "build": "yarn clean-dist && yarn compile --",
     "watch": "yarn build -- -w",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "ios": "yarn build && concurrently -r 'yarn watch' 'node node_modules/react-native/local-cli/cli.js run-ios'",
-    "test": "jest",
-    "postinstall": "tsc"
+    "test": "jest"
   },
   "dependencies": {
     "appcenter": "^1.1.0",
