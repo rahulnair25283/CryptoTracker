@@ -9,7 +9,8 @@
     "watch": "yarn build -- -w",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "ios": "yarn build && concurrently -r 'yarn watch' 'node node_modules/react-native/local-cli/cli.js run-ios'",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "tsc"
   },
   "dependencies": {
     "appcenter": "^1.1.0",
