@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import TimerMixin from "react-timer-mixin";
-import { FlatList, Text, View, RefreshControl } from "react-native";
+import {
+  FlatList,
+  Text,
+  View,
+  RefreshControl,
+  TouchableOpacity,
+} from "react-native";
 import { Crypto } from "../model";
 import CryptoItem from "./CryptoItem";
 import styles from "./styles";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
-interface Props {}
+interface Props {
+  navigateToSearch: () => void;
+}
+
 interface State {
   loading: boolean;
   data: Crypto[];
@@ -64,7 +73,9 @@ export default class CryptoList extends Component<Props, State> {
       <View
         style={{ left: 95, justifyContent: "center", alignItems: "center" }}
       >
-        <Icon name="search" color="#ffffff" size={20} />
+        <TouchableOpacity onPress={this.props.navigateToSearch}>
+          <Icon name="search" color="#ffffff" size={20} />
+        </TouchableOpacity>
       </View>
     </View>
   )

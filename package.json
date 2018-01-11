@@ -19,6 +19,7 @@
     "react": "16.0.0",
     "react-native": "0.51.0",
     "react-native-vector-icons": "^4.4.3",
+    "react-navigation": "^1.0.0-beta.23",
     "react-timer-mixin": "^0.13.3"
   },
   "jest": {
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@types/react": "^16.0.33",
     "@types/react-native": "^0.51.8",
+    "@types/react-navigation": "^1.0.26",
     "concurrently": "^3.5.1",
     "rimraf": "^2.6.2",
     "tslint": "^5.8.0",
