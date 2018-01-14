@@ -44,13 +44,12 @@ export default class CryptoList extends Component<Props, State> {
   public render() {
     return (
       <View style={styles.container}>
+        {this.renderHeader()}
         <FlatList
           data={this.state.data}
           keyExtractor={this.keyExtractor}
-          ListHeaderComponent={this.renderHeader}
           renderItem={this.renderItem}
           ItemSeparatorComponent={this.renderSeparator}
-          stickyHeaderIndices={[0]}
           refreshControl={
             <RefreshControl
               refreshing={this.state.loading}

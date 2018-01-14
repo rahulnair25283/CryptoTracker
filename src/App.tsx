@@ -3,8 +3,8 @@ import { StackNavigator } from "react-navigation";
 export interface Props {}
 export interface State {}
 
-import Main from "./screens/Main";
-import Search from "./screens/Search";
+import MainScreen from "./screens/MainScreen";
+import SearchScreen from "./screens/SearchScreen";
 
 // export default class App extends Component<Props, State> {
 //   public render() {
@@ -14,8 +14,8 @@ import Search from "./screens/Search";
 
 const App = StackNavigator(
   {
-    Main: { screen: Main },
-    Search: { screen: Search },
+    Main: { screen: MainScreen },
+    Search: { screen: SearchScreen },
   },
   {
     headerMode: "none",
