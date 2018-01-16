@@ -49,7 +49,7 @@ export default class CryptoList extends Component<Props, State> {
           data={this.state.data}
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
-          ItemSeparatorComponent={this.renderSeparator}
+          // ItemSeparatorComponent={this.renderSeparator}
           refreshControl={
             <RefreshControl
               refreshing={this.state.loading}
