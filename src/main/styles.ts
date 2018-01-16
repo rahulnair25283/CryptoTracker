@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   header: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     padding: 20,
     backgroundColor: "#30bced",
@@ -16,10 +16,19 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     shadowOffset: { height: 1, width: 0 },
   },
+  headerTextContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   headerText: {
     fontSize: 18,
     fontFamily: "lato",
     color: "#fffaff",
+  },
+  searchButtonContainer: {
+    justifyContent: "center",
+    alignItems: "center",
   },
   separator: {
     height: 0.5,

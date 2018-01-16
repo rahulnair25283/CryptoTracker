@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { Crypto } from "../model";
-import styles from "./styles";
+import styles from "../styles";
 import Icons from "../icons";
 
 interface Props {

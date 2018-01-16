@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CryptoList from "../components/CryptoList";
+import CryptoList from "./component/CryptoList";
 
 export interface State {}
 export interface Props {

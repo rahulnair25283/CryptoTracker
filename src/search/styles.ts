@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   searchBox: {
+    flex: 1,
     padding: 10,
     color: "#050401",
   },

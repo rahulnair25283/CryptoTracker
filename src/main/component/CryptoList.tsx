@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Crypto } from "../model";
 import CryptoItem from "./CryptoItem";
-import styles from "./styles";
+import styles from "../styles";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface Props {
@@ -68,18 +68,16 @@ export default class CryptoList extends Component<Props, State> {
 
   private renderHeader = () => (
     <View style={styles.header}>
-      <Text style={styles.headerText}>Cryptocurrencies</Text>
-      <View
-        style={{ left: 95, justifyContent: "center", alignItems: "center" }}
-      >
+      <View style={styles.headerTextContainer}>
+        <Text style={styles.headerText}>Cryptocurrencies</Text>
+      </View>
+      <View style={styles.searchButtonContainer}>
         <TouchableOpacity onPress={this.props.navigateToSearch}>
           <Icon name="search" color="#ffffff" size={20} />
         </TouchableOpacity>
       </View>
     </View>
   )
-
-  private renderSeparator = () => <View style={styles.separator} />;
 
   private onRefresh = () => {
     this.setState({

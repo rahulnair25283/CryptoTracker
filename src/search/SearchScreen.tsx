@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Search from "../components/search/Search";
+import Search from "./component/Search";
 
 export interface State {}
 export interface Props {
