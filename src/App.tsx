@@ -6,12 +6,6 @@ export interface State {}
 import MainScreen from "./main/MainScreen";
 import SearchScreen from "./search/SearchScreen";
 
-// export default class App extends Component<Props, State> {
-//   public render() {
-//     return <Main />;
-//   }
-// }
-
 const App = StackNavigator(
   {
     Main: { screen: MainScreen },
@@ -19,7 +13,7 @@ const App = StackNavigator(
   },
   {
     headerMode: "none",
-  }
+  },
 );
 
 export default App;

@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    top: 20,
+  statusBarBackground: {
+    backgroundColor: "#30bced",
   },
   header: {
+    height: 50,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

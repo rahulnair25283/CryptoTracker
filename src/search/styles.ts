@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    top: 20,
+  statusBarBackground: {
+    backgroundColor: "#30bced",
   },
   header: {
+    height: 50,
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
   },
   searchBox: {
     flex: 1,
-    padding: 10,
+    padding: 5,
     color: "#050401",
   },
   cancelSearchButton: {

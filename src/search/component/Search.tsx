@@ -18,7 +18,7 @@ export default class Search extends Component<Props, State> {
     };
   }
   public render() {
-    return <View style={styles.container}>{this.renderHeader()}</View>;
+    return <View>{this.renderHeader()}</View>;
   }
 
   private renderHeader = () => (

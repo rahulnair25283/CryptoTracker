@@ -43,13 +43,12 @@ export default class CryptoList extends Component<Props, State> {
 
   public render() {
     return (
-      <View style={styles.container}>
+      <View>
         {this.renderHeader()}
         <FlatList
           data={this.state.data}
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
-          // ItemSeparatorComponent={this.renderSeparator}
           refreshControl={
             <RefreshControl
               refreshing={this.state.loading}
@@ -77,7 +76,7 @@ export default class CryptoList extends Component<Props, State> {
         </TouchableOpacity>
       </View>
     </View>
-  )
+  );
 
   private onRefresh = () => {
     this.setState({
@@ -87,7 +86,7 @@ export default class CryptoList extends Component<Props, State> {
     this.setState({
       loading: false,
     });
-  }
+  };
 
   private refreshContent = () =>
     fetch("https://api.coinmarketcap.com/v1/ticker/")
@@ -96,7 +95,7 @@ export default class CryptoList extends Component<Props, State> {
         this.setState({
           loading: false,
           data: responseJson,
-        })
+        }),
       )
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
 }
