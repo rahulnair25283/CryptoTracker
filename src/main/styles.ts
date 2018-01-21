@@ -4,6 +4,9 @@ const styles = StyleSheet.create({
   statusBarBackground: {
     backgroundColor: "#30bced",
   },
+  container: {
+    backgroundColor: "#ffffff",
+  },
   header: {
     height: 50,
     display: "flex",

@@ -3,27 +3,33 @@ import { Crypto } from "./model";
 
 export interface State {
   loading: boolean;
-  error: Error;
+  error: Error | null;
   data: Array<Crypto>;
 }
 
-const reducer = (state: State, action: Action): any => {
-  const { type } = action;
+const initialState = {
+  loading: false,
+  error: null,
+  data: [],
+};
+
+const reducer = (state: State = initialState, action: Action): any => {
+  const { type, payload } = action;
 
   switch (type) {
-    case "LOAD_CRYPTOS_REQUESTED":
+    case "FETCH_COINS_REQUESTED":
       return {
         ...state,
         loading: true,
       };
-    case "LOAD_CRYPTOS_SUCCEEDED":
+    case "FETCH_COINS_SUCCEEDED":
       return {
         ...state,
         loading: false,
         error: null,
-        // TODO: data:
+        data: payload,
       };
-    case "LOAD_CRYPTOS_FAILED":
+    case "FETCH_COINS_FAILED":
       return {
         loading: false,
         error: new Error(),

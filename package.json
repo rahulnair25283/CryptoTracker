@@ -19,10 +19,15 @@
     "appcenter-crashes": "^1.1.0",
     "react": "16.0.0",
     "react-native": "0.51.0",
+    "react-native-config": "^0.11.5",
     "react-native-vector-icons": "^4.4.3",
     "react-navigation": "^1.0.0-beta.23",
+    "react-redux": "^5.0.6",
     "react-timer-mixin": "^0.13.3",
-    "redux-observable": "^0.17.0"
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-observable": "^0.17.0",
+    "rxjs": "^5.5.6"
   },
   "jest": {
     "preset": "react-native"
@@ -31,6 +36,9 @@
     "@types/react": "^16.0.33",
     "@types/react-native": "^0.51.8",
     "@types/react-navigation": "^1.0.26",
+    "@types/react-redux": "^5.0.14",
+    "@types/redux": "^3.6.0",
+    "@types/redux-logger": "^3.0.5",
     "concurrently": "^3.5.1",
     "rimraf": "^2.6.2",
     "tslint": "^5.8.0",

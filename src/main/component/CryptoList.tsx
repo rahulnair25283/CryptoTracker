@@ -42,8 +42,9 @@ export default class CryptoList extends Component<Props, State> {
   }
 
   public render() {
+    console.log(this.state.data);
     return (
-      <View>
+      <View style={styles.container}>
         {this.renderHeader()}
         <FlatList
           data={this.state.data}
