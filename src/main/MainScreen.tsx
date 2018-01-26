@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import CoinList from "./component/CoinList";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import StatusBar from "../statusBar/StatusBar";
-import styles from "./styles";
 import CoinListHeader from "./component/CoinListHeader";
 
 export interface State {}
@@ -31,3 +30,12 @@ export default class MainScreen extends Component<Props, State> {
         this.props.navigation.navigate("Search");
     };
 }
+
+const styles = StyleSheet.create({
+    statusBarBackground: {
+        backgroundColor: "#30bced",
+    },
+    container: {
+        backgroundColor: "#ffffff",
+    },
+});

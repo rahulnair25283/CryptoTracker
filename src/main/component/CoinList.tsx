@@ -7,6 +7,7 @@ import { RootState, getMainState } from "../../rootReducer";
 import { MainState } from "../reducer";
 import { fetchCoins } from "../actions";
 import { Action } from "redux";
+import LoadingSkeleton from "./LoadingSkeleton";
 
 interface Props {
     mainState: MainState;
