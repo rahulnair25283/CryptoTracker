@@ -30,9 +30,9 @@ class CoinList extends Component<Props, State> {
 
     public componentDidMount() {
         this.props.fetchCoins();
-        this.timer = TimerMixin.setInterval(() => {
-            this.props.fetchCoins();
-        }, 5000);
+        // this.timer = TimerMixin.setInterval(() => {
+        //     this.props.fetchCoins();
+        // }, 5000);
     }
 
     public componentWillUnmount() {
