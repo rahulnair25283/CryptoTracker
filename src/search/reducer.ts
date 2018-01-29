@@ -16,8 +16,14 @@ const reducer = (state: SearchState = initialState, action: Action) => {
         case SEARCH_COIN:
             const { searchText, allCoins } = payload;
             return {
-                searchResult: allCoins.filter(x =>
-                    x.name.toLowerCase().startsWith(searchText),
+                searchResult: allCoins.filter(
+                    x =>
+                        x.name
+                            .toLowerCase()
+                            .startsWith(searchText.toLowerCase()) ||
+                        x.symbol
+                            .toLowerCase()
+                            .startsWith(searchText.toLowerCase()),
                 ),
             };
         case CLEAR_SEARCH:
