@@ -43,7 +43,12 @@ class Search extends Component<Props, State> {
     private renderHeader = () => (
         <View style={styles.header}>
             <View>
-                <TouchableOpacity onPress={this.props.navigateBack}>
+                <TouchableOpacity
+                    onPress={() => {
+                        this.props.clearSearch();
+                        this.props.navigateBack();
+                    }}
+                >
                     <Icon name="arrow-back" color="#ffffff" size={20} />
                 </TouchableOpacity>
             </View>
