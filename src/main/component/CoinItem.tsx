@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { Coin } from "../model";
 import Icons from "../icons";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface Props {
     data: Coin;
@@ -16,49 +17,62 @@ export default class CoinItem extends Component<Props, State> {
     public render() {
         const { data } = this.props;
         return (
-            <TouchableOpacity>
-                <View style={styles.item}>
-                    <View style={styles.itemSummary}>
-                        <View style={styles.icon}>
-                            <Image
-                                source={Icons[data.symbol]}
-                                style={styles.iconImage}
-                            />
+            <View style={styles.item}>
+                <View style={styles.itemLeft}>
+                    <TouchableOpacity>
+                        <View style={styles.itemSummary}>
+                            <View style={styles.icon}>
+                                <Image
+                                    source={Icons[data.symbol]}
+                                    style={styles.iconImage}
+                                />
+                            </View>
+                            <View style={styles.nameSymbol}>
+                                <Text style={styles.symbol}>{data.symbol}</Text>
+                                <Text style={styles.name}> | {data.name}</Text>
+                            </View>
+                            <Text style={styles.price}>$ {data.price_usd}</Text>
                         </View>
-                        <View style={styles.nameSymbol}>
-                            <Text style={styles.symbol}>{data.symbol}</Text>
-                            <Text style={styles.name}> | {data.name}</Text>
+                        <View style={styles.itemDetails}>
+                            <View style={styles.hourlyChange}>
+                                <Text style={styles.changeLabel}>Hourly: </Text>
+                                {Number.parseFloat(data.percent_change_1h) >
+                                0 ? (
+                                    <Text style={styles.changePositive}>
+                                        {data.percent_change_1h}%
+                                    </Text>
+                                ) : (
+                                    <Text style={styles.changeNegative}>
+                                        {data.percent_change_1h}%
+                                    </Text>
+                                )}
+                            </View>
+                            <View style={styles.hourlyChange}>
+                                <Text style={styles.changeLabel}>Daily: </Text>
+                                {Number.parseFloat(data.percent_change_24h) >
+                                0 ? (
+                                    <Text style={styles.changePositive}>
+                                        {data.percent_change_24h}%
+                                    </Text>
+                                ) : (
+                                    <Text style={styles.changeNegative}>
+                                        {data.percent_change_24h}%
+                                    </Text>
+                                )}
+                            </View>
                         </View>
-                        <Text style={styles.price}>$ {data.price_usd}</Text>
-                    </View>
-                    <View style={styles.itemDetails}>
-                        <View style={styles.hourlyChange}>
-                            <Text style={styles.changeLabel}>Hourly: </Text>
-                            {Number.parseFloat(data.percent_change_1h) > 0 ? (
-                                <Text style={styles.changePositive}>
-                                    {data.percent_change_1h}%
-                                </Text>
-                            ) : (
-                                <Text style={styles.changeNegative}>
-                                    {data.percent_change_1h}%
-                                </Text>
-                            )}
-                        </View>
-                        <View style={styles.hourlyChange}>
-                            <Text style={styles.changeLabel}>Daily: </Text>
-                            {Number.parseFloat(data.percent_change_24h) > 0 ? (
-                                <Text style={styles.changePositive}>
-                                    {data.percent_change_24h}%
-                                </Text>
-                            ) : (
-                                <Text style={styles.changeNegative}>
-                                    {data.percent_change_24h}%
-                                </Text>
-                            )}
-                        </View>
-                    </View>
+                    </TouchableOpacity>
                 </View>
-            </TouchableOpacity>
+                <View style={styles.itemRight}>
+                    <TouchableOpacity style={styles.favorite}>
+                        <Icon
+                            name="favorite-border"
+                            size={20}
+                            color="#30bced"
+                        />
+                    </TouchableOpacity>
+                </View>
+            </View>
         );
     }
 }
@@ -81,8 +95,9 @@ const styles = StyleSheet.create({
         borderColor: "#e2e2e2",
         borderRadius: 3,
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         paddingLeft: 10,
+        paddingRight: 10,
         paddingTop: 20,
         paddingBottom: 20,
         backgroundColor: "#FAFFFD",
@@ -92,9 +107,18 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowRadius: 1.2,
     },
+    itemLeft: {
+        display: "flex",
+        flex: 0.9,
+    },
+    itemRight: {
+        display: "flex",
+        flex: 0.1,
+    },
     itemSummary: {
         display: "flex",
         flexDirection: "row",
+        flex: 1,
     },
     icon: {
         justifyContent: "center",
@@ -108,8 +132,8 @@ const styles = StyleSheet.create({
     nameSymbol: {
         display: "flex",
         flexDirection: "row",
-        width: 150,
         left: 10,
+        width: 190,
     },
     symbol: {
         fontFamily: "lato",
@@ -123,7 +147,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     price: {
-        left: 50,
         fontFamily: "lato",
         fontWeight: "bold",
         color: "#303036",
@@ -137,7 +160,7 @@ const styles = StyleSheet.create({
     hourlyChange: {
         display: "flex",
         flexDirection: "row",
-        width: 190,
+        width: 180,
     },
     changeLabel: {
         fontFamily: "lato",
@@ -155,5 +178,10 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: "bold",
         color: "red",
+    },
+    favorite: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
     },
 });
