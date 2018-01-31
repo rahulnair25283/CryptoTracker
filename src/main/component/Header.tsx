@@ -3,14 +3,20 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface Props {
+    navigateToFavorites: () => void;
     navigateToSearch: () => void;
 }
 
-const CoinListHeader = (props: Props) => {
+const Header = (props: Props) => {
     return (
         <View style={styles.header}>
             <View style={styles.headerTextContainer}>
-                <Text style={styles.headerText}>Cryptocurrencies</Text>
+                <Text style={styles.headerText}>Coins</Text>
+            </View>
+            <View style={styles.favoritesButtonContainer}>
+                <TouchableOpacity onPress={props.navigateToFavorites}>
+                    <Icon name="favorite-border" color="#ffffff" size={20} />
+                </TouchableOpacity>
             </View>
             <View style={styles.searchButtonContainer}>
                 <TouchableOpacity onPress={props.navigateToSearch}>
@@ -39,11 +45,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        left: 20,
     },
     headerText: {
         fontSize: 18,
         fontFamily: "lato",
         color: "#fffaff",
+    },
+    favoritesButtonContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        right: 20,
     },
     searchButtonContainer: {
         justifyContent: "center",
@@ -51,4 +63,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CoinListHeader;
+export default Header;
