@@ -1,6 +1,7 @@
 import { Action } from "../types";
 import { SEARCH_COIN, CLEAR_SEARCH } from "./actions";
 import { Coin } from "../main/model";
+import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../favorites/actions";
 
 export interface SearchState {
     searchResult: Coin[];
@@ -30,6 +31,21 @@ const reducer = (state: SearchState = initialState, action: Action) => {
             return {
                 searchResult: [],
             };
+        case ADD_TO_FAVORITES:
+            return {
+                searchResult: state.searchResult.map(x => {
+                    x.favorite = x.id === payload.id ? true : x.favorite;
+                    return x;
+                }),
+            };
+        case REMOVE_FROM_FAVORITES: {
+            return {
+                searchResult: state.searchResult.map(x => {
+                    x.favorite = x.id === payload.id ? false : x.favorite;
+                    return x;
+                }),
+            };
+        }
         default:
             return state;
     }

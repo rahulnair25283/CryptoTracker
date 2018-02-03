@@ -1,6 +1,11 @@
 import { Action } from "../types";
 import { Coin } from "./model";
 import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../favorites/actions";
+import {
+    FETCH_COINS_REQUESTED,
+    FETCH_COINS_SUCCEEDED,
+    FETCH_COINS_FAILED,
+} from "./actions";
 
 export interface MainState {
     loading: boolean;
@@ -21,12 +26,12 @@ const reducer = (
     const { type, payload } = action;
 
     switch (type) {
-        case "FETCH_COINS_REQUESTED":
+        case FETCH_COINS_REQUESTED:
             return {
                 ...state,
                 loading: true,
             };
-        case "FETCH_COINS_SUCCEEDED":
+        case FETCH_COINS_SUCCEEDED:
             return {
                 loading: false,
                 error: null,
@@ -38,7 +43,7 @@ const reducer = (
                               favorite: x.favorite,
                           })),
             };
-        case "FETCH_COINS_FAILED":
+        case FETCH_COINS_FAILED:
             return {
                 loading: false,
                 error: payload,
