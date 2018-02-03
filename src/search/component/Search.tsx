@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, TextInput, FlatList } from "react-native";
+import {
+    View,
+    TouchableOpacity,
+    TextInput,
+    FlatList,
+    Text,
+} from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { connect } from "react-redux";
 import { searchCoin, clearSearch } from "../actions";
@@ -8,12 +14,15 @@ import { RootState, getSearchResult, getAllCoins } from "../../rootReducer";
 import { Coin } from "../../main/model";
 import CoinItem from "../../main/component/CoinItem";
 import { StyleSheet } from "react-native";
+import { addToFavorites, removeFromFavorites } from "../../favorites/actions";
 
 interface Props {
     searchResult: Coin[];
     allCoins: Coin[];
     searchCoin: (searchText: String, allCoins: Coin[]) => Action;
     clearSearch: () => Action;
+    addToFavorites: (coin: Coin) => Action;
+    removeFromFavorites: (coin: Coin) => Action;
     navigateBack: () => void;
 }
 interface State {
@@ -28,14 +37,23 @@ class Search extends Component<Props, State> {
         };
     }
     public render() {
+        const { searchResult } = this.props;
         return (
             <View>
                 {this.renderHeader()}
-                <FlatList
-                    data={this.props.searchResult}
-                    keyExtractor={this.keyExtractor}
-                    renderItem={this.renderItem}
-                />
+                {!searchResult || searchResult.length === 0 ? (
+                    <View style={styles.placeholderContainer}>
+                        <Text style={styles.placeholderText}>
+                            Search for a coin, you'll feel better...
+                        </Text>
+                    </View>
+                ) : (
+                    <FlatList
+                        data={searchResult}
+                        keyExtractor={this.keyExtractor}
+                        renderItem={this.renderItem}
+                    />
+                )}
             </View>
         );
     }
@@ -72,7 +90,13 @@ class Search extends Component<Props, State> {
         </View>
     );
 
-    private renderItem = ({ item }) => <CoinItem data={item} />;
+    private renderItem = ({ item }) => (
+        <CoinItem
+            data={item}
+            addToFavorites={this.props.addToFavorites}
+            removeFromFavorites={this.props.removeFromFavorites}
+        />
+    );
 
     private keyExtractor = item => item.id;
 
@@ -104,7 +128,7 @@ const mergeProps = (stateToProps, dispatchToProps, ownProps) => ({
 
 export default connect(
     mapStateToProps,
-    { searchCoin, clearSearch },
+    { searchCoin, clearSearch, addToFavorites, removeFromFavorites },
     mergeProps,
 )(Search);
 
@@ -139,5 +163,18 @@ const styles = StyleSheet.create({
     },
     cancelSearchButton: {
         marginRight: 5,
+    },
+    placeholderContainer: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 30,
+        height: "85%",
+    },
+    placeholderText: {
+        fontSize: 12,
+        fontFamily: "lato",
+        color: "#fc5130",
+        textAlign: "center",
     },
 });

@@ -6,6 +6,8 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface Props {
     data: Coin;
+    addToFavorites: (coin: Coin) => Action;
+    removeFromFavorites: (coin: Coin) => Action;
 }
 interface State {}
 
@@ -15,7 +17,7 @@ export default class CoinItem extends Component<Props, State> {
     }
 
     public render() {
-        const { data } = this.props;
+        const { data, addToFavorites, removeFromFavorites } = this.props;
         return (
             <View style={styles.item}>
                 <View style={styles.itemLeft}>
@@ -64,12 +66,23 @@ export default class CoinItem extends Component<Props, State> {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.itemRight}>
-                    <TouchableOpacity style={styles.favorite}>
-                        <Icon
-                            name="favorite-border"
-                            size={20}
-                            color="#30bced"
-                        />
+                    <TouchableOpacity
+                        style={styles.favorite}
+                        onPress={() =>
+                            data.favorite
+                                ? removeFromFavorites(data)
+                                : addToFavorites(data)
+                        }
+                    >
+                        {data.favorite ? (
+                            <Icon name="favorite" size={20} color="#fc5130" />
+                        ) : (
+                            <Icon
+                                name="favorite-border"
+                                size={20}
+                                color="#fc5130"
+                            />
+                        )}
                     </TouchableOpacity>
                 </View>
             </View>
@@ -78,6 +91,7 @@ export default class CoinItem extends Component<Props, State> {
 }
 
 import { StyleSheet } from "react-native";
+import { Action } from "../../types";
 
 const styles = StyleSheet.create({
     separator: {
@@ -138,12 +152,12 @@ const styles = StyleSheet.create({
     symbol: {
         fontFamily: "lato",
         fontWeight: "bold",
-        color: "#fc5130",
+        color: "#050401",
         fontSize: 16,
     },
     name: {
         fontFamily: "lato",
-        color: "#fc5130",
+        color: "#050401",
         fontSize: 16,
     },
     price: {

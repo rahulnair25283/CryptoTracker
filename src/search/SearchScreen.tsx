@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Search from "./component/Search";
 import { View, StyleSheet } from "react-native";
 import StatusBar from "../statusBar/StatusBar";
-import styles from "./styles";
 
 export interface State {}
 export interface Props {

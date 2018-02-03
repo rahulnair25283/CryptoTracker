@@ -6,11 +6,15 @@ import { connect } from "react-redux";
 import { RootState, getMainState } from "../../rootReducer";
 import { MainState } from "../reducer";
 import { fetchCoins } from "../actions";
+import { addToFavorites, removeFromFavorites } from "../../favorites/actions";
 import { Action } from "redux";
+import { Coin } from "../model";
 
 interface Props {
     mainState: MainState;
     fetchCoins: () => Action;
+    addToFavorites: (coin: Coin) => Action;
+    removeFromFavorites: (coin: Coin) => Action;
 }
 
 interface State {
@@ -30,9 +34,9 @@ class CoinList extends Component<Props, State> {
 
     public componentDidMount() {
         this.props.fetchCoins();
-        // this.timer = TimerMixin.setInterval(() => {
-        //     this.props.fetchCoins();
-        // }, 5000);
+        this.timer = TimerMixin.setInterval(() => {
+            this.props.fetchCoins();
+        }, 5000);
     }
 
     public componentWillUnmount() {
@@ -57,7 +61,13 @@ class CoinList extends Component<Props, State> {
         );
     }
 
-    private renderItem = ({ item }) => <CoinItem data={item} />;
+    private renderItem = ({ item }) => (
+        <CoinItem
+            data={item}
+            addToFavorites={this.props.addToFavorites}
+            removeFromFavorites={this.props.removeFromFavorites}
+        />
+    );
 
     private keyExtractor = item => item.id;
 
@@ -78,4 +88,6 @@ const stateToProps = (rootState: RootState) => ({
 
 export default connect(stateToProps, {
     fetchCoins,
+    addToFavorites,
+    removeFromFavorites,
 })(CoinList);
