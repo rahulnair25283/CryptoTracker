@@ -15,6 +15,7 @@ interface Props {
     fetchCoins: () => Action;
     addToFavorites: (coin: Coin) => Action;
     removeFromFavorites: (coin: Coin) => Action;
+    navigateToCoinDetails: () => void;
 }
 
 interface State {
@@ -66,6 +67,7 @@ class CoinList extends Component<Props, State> {
             data={item}
             addToFavorites={this.props.addToFavorites}
             removeFromFavorites={this.props.removeFromFavorites}
+            navigateToDetails={this.props.navigateToCoinDetails}
         />
     );
 

@@ -8,6 +8,7 @@ interface Props {
     data: Coin;
     addToFavorites: (coin: Coin) => Action;
     removeFromFavorites: (coin: Coin) => Action;
+    navigateToDetails: () => void;
 }
 interface State {}
 
@@ -17,11 +18,16 @@ export default class CoinItem extends Component<Props, State> {
     }
 
     public render() {
-        const { data, addToFavorites, removeFromFavorites } = this.props;
+        const {
+            data,
+            addToFavorites,
+            removeFromFavorites,
+            navigateToDetails,
+        } = this.props;
         return (
             <View style={styles.item}>
                 <View style={styles.itemLeft}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigateToDetails()}>
                         <View style={styles.itemSummary}>
                             <View style={styles.icon}>
                                 <Image
@@ -137,7 +143,6 @@ const styles = StyleSheet.create({
     icon: {
         justifyContent: "center",
         alignItems: "center",
-        top: -5,
     },
     iconImage: {
         height: 30,
@@ -166,7 +171,6 @@ const styles = StyleSheet.create({
         color: "#303036",
     },
     itemDetails: {
-        top: 5,
         left: 40,
         display: "flex",
         flexDirection: "row",

@@ -23,7 +23,9 @@ export default class MainScreen extends Component<Props, State> {
                         navigateToFavorites={this.navigateToFavorites}
                         navigateToSearch={this.navigateToSearch}
                     />
-                    <CoinList />
+                    <CoinList
+                        navigateToCoinDetails={this.navigateToCoinDetails}
+                    />
                 </View>
             </View>
         );
@@ -35,6 +37,10 @@ export default class MainScreen extends Component<Props, State> {
 
     public navigateToFavorites = () => {
         this.props.navigation.navigate("Favorites");
+    };
+
+    public navigateToCoinDetails = () => {
+        this.props.navigation.navigate("CoinDetails");
     };
 }
 

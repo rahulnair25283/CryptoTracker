@@ -71,6 +71,7 @@ class FavoritesList extends Component<Props, State> {
             data={item}
             addToFavorites={this.props.addToFavorites}
             removeFromFavorites={this.props.removeFromFavorites}
+            navigateToDetails={() => null}
         />
     );
 
