@@ -13,14 +13,10 @@ export default class SearchScreen extends Component<Props, State> {
         return (
             <View>
                 <StatusBar style={styles.statusBarBackground} />
-                <Search navigateBack={this.navigateBack} />
+                <Search navigation={this.props.navigation} />
             </View>
         );
     }
-
-    public navigateBack = () => {
-        this.props.navigation.goBack();
-    };
 }
 
 const styles = StyleSheet.create({

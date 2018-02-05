@@ -17,14 +17,10 @@ export default class MainScreen extends Component<Props, State> {
         return (
             <View>
                 <StatusBar style={styles.statusBarBackground} />
-                <FavoritesList navigateBack={this.navigateBack} />
+                <FavoritesList navigation={this.props.navigation} />
             </View>
         );
     }
-
-    public navigateBack = () => {
-        this.props.navigation.goBack();
-    };
 }
 
 const styles = StyleSheet.create({

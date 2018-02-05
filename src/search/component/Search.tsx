@@ -23,7 +23,7 @@ interface Props {
     clearSearch: () => Action;
     addToFavorites: (coin: Coin) => Action;
     removeFromFavorites: (coin: Coin) => Action;
-    navigateBack: () => void;
+    navigation: any;
 }
 interface State {
     searchText: string;
@@ -64,7 +64,7 @@ class Search extends Component<Props, State> {
                 <TouchableOpacity
                     onPress={() => {
                         this.props.clearSearch();
-                        this.props.navigateBack();
+                        this.props.navigation.goBack();
                     }}
                 >
                     <Icon name="arrow-back" color="#ffffff" size={20} />
@@ -95,7 +95,6 @@ class Search extends Component<Props, State> {
             data={item}
             addToFavorites={this.props.addToFavorites}
             removeFromFavorites={this.props.removeFromFavorites}
-            navigateToDetails={() => null}
         />
     );
 
@@ -170,7 +169,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 30,
-        height: "85%",
     },
     placeholderText: {
         fontSize: 12,

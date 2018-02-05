@@ -16,14 +16,10 @@ export default class CoinDetailsScreen extends Component<Props> {
         return (
             <View>
                 <StatusBar style={styles.statusBarBackground} />
-                <CoinDetails navigateBack={this.navigateBack} />
+                <CoinDetails navigation={this.props.navigation} />
             </View>
         );
     }
-
-    public navigateBack = () => {
-        this.props.navigation.goBack();
-    };
 }
 
 const styles = StyleSheet.create({

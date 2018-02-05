@@ -18,7 +18,7 @@ interface Props {
     favorites: Coin[];
     addToFavorites: (coin: Coin) => Action;
     removeFromFavorites: (coin: Coin) => Action;
-    navigateBack: () => void;
+    navigation: any;
 }
 interface State {}
 
@@ -32,8 +32,9 @@ class FavoritesList extends Component<Props, State> {
         <View style={styles.header}>
             <TouchableOpacity
                 onPress={() => {
-                    this.props.navigateBack();
+                    this.props.navigation.goBack();
                 }}
+                style={styles.backButton}
             >
                 <Icon name="arrow-back" color="#ffffff" size={20} />
             </TouchableOpacity>
@@ -71,7 +72,6 @@ class FavoritesList extends Component<Props, State> {
             data={item}
             addToFavorites={this.props.addToFavorites}
             removeFromFavorites={this.props.removeFromFavorites}
-            navigateToDetails={() => null}
         />
     );
 
@@ -92,8 +92,11 @@ const styles = StyleSheet.create({
         shadowColor: "black",
         shadowOffset: { height: 1, width: 0 },
     },
+    backButton: {
+        flex: 0.1,
+    },
     headerTextContainer: {
-        flex: 1,
+        flex: 0.9,
         justifyContent: "center",
         alignItems: "center",
         right: 10,
@@ -108,7 +111,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 30,
-        height: "85%",
     },
     placeholderText: {
         fontSize: 12,

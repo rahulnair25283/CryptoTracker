@@ -8,7 +8,7 @@ interface Props {
     data: Coin;
     addToFavorites: (coin: Coin) => Action;
     removeFromFavorites: (coin: Coin) => Action;
-    navigateToDetails: () => void;
+    navigation?: any;
 }
 interface State {}
 
@@ -22,12 +22,14 @@ export default class CoinItem extends Component<Props, State> {
             data,
             addToFavorites,
             removeFromFavorites,
-            navigateToDetails,
+            navigation,
         } = this.props;
         return (
             <View style={styles.item}>
                 <View style={styles.itemLeft}>
-                    <TouchableOpacity onPress={() => navigateToDetails()}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate("CoinDetails")}
+                    >
                         <View style={styles.itemSummary}>
                             <View style={styles.icon}>
                                 <Image
