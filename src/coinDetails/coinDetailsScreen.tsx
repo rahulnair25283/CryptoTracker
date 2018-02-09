@@ -24,7 +24,7 @@ export default class CoinDetailsScreen extends Component<Props> {
 
 const styles = StyleSheet.create({
     statusBarBackground: {
-        backgroundColor: "#30bced",
+        backgroundColor: "#fc5130",
     },
     container: {
         backgroundColor: "#ffffff",

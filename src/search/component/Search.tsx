@@ -48,12 +48,13 @@ class Search extends Component<Props, State> {
                         </Text>
                     </View>
                 ) : (
-                    <FlatList
-                        data={searchResult}
-                        keyExtractor={this.keyExtractor}
-                        renderItem={this.renderItem}
-                    />
-                )}
+                        <FlatList
+                            data={searchResult}
+                            keyExtractor={this.keyExtractor}
+                            renderItem={this.renderItem}
+                            style={styles.list}
+                        />
+                    )}
             </View>
         );
     }
@@ -134,12 +135,14 @@ export default connect(
 
 const styles = StyleSheet.create({
     header: {
-        height: 50,
+        height: 40,
         display: "flex",
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
-        padding: 10,
+        paddingLeft: 10,
+        paddingTop: 5,
+        paddingBottom: 5,
         backgroundColor: "#30bced",
         shadowOpacity: 0.3,
         shadowRadius: 1,
@@ -165,7 +168,6 @@ const styles = StyleSheet.create({
         marginRight: 5,
     },
     placeholderContainer: {
-        display: "flex",
         justifyContent: "center",
         alignItems: "center",
         padding: 30,
@@ -176,4 +178,7 @@ const styles = StyleSheet.create({
         color: "#fc5130",
         textAlign: "center",
     },
+    list: {
+        marginTop: 15,
+    }
 });

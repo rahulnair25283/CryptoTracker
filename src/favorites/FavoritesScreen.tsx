@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import StatusBar from "../statusBar/StatusBar";
 import FavoritesList from "./component/FavoritesList";
 
-export interface State {}
+const { height } = Dimensions.get("window");
+
+export interface State { }
 export interface Props {
     navigation: any;
 }
@@ -15,7 +17,7 @@ export default class MainScreen extends Component<Props, State> {
 
     public render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <StatusBar style={styles.statusBarBackground} />
                 <FavoritesList navigation={this.props.navigation} />
             </View>
@@ -24,10 +26,11 @@ export default class MainScreen extends Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
-    statusBarBackground: {
-        backgroundColor: "#30bced",
-    },
     container: {
         backgroundColor: "#ffffff",
+        height: height,
+    },
+    statusBarBackground: {
+        backgroundColor: "#30bced",
     },
 });

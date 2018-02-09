@@ -1,7 +1,7 @@
 import { StackNavigator } from "react-navigation";
 
-export interface Props {}
-export interface State {}
+export interface Props { }
+export interface State { }
 
 import MainScreen from "./main/MainScreen";
 import FavoritesScreen from "./favorites/FavoritesScreen";
@@ -16,6 +16,7 @@ const App = StackNavigator(
         Search: { screen: SearchScreen },
     },
     {
+        mode: "modal",
         headerMode: "none",
     },
 );

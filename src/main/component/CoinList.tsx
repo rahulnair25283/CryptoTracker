@@ -55,7 +55,7 @@ class CoinList extends Component<Props, State> {
     public render() {
         const { data } = this.props.mainState;
         return (
-            <View style={styles.container}>
+            <View>
                 {this.renderHeader()}
                 <FlatList
                     data={data}
@@ -68,6 +68,8 @@ class CoinList extends Component<Props, State> {
                             tintColor="#fc5130"
                         />
                     }
+                    style={styles.list}
+
                 />
             </View>
         );
@@ -138,16 +140,13 @@ export default connect(
 )(CoinList);
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "#ffffff",
-    },
     header: {
-        height: 50,
+        height: 40,
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: 20,
+        padding: 10,
         backgroundColor: "#30bced",
         shadowOpacity: 0.3,
         shadowRadius: 1,
@@ -174,4 +173,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+    list: {
+        marginTop: 15,
+    }
 });

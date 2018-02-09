@@ -20,7 +20,7 @@ interface Props {
     removeFromFavorites: (coin: Coin) => Action;
     navigation: any;
 }
-interface State {}
+interface State { }
 
 class FavoritesList extends Component<Props, State> {
     constructor(props: Props) {
@@ -57,12 +57,13 @@ class FavoritesList extends Component<Props, State> {
                         </Text>
                     </View>
                 ) : (
-                    <FlatList
-                        data={favorites}
-                        keyExtractor={this.keyExtractor}
-                        renderItem={this.renderItem}
-                    />
-                )}
+                        <FlatList
+                            data={favorites}
+                            keyExtractor={this.keyExtractor}
+                            renderItem={this.renderItem}
+                            style={styles.list}
+                        />
+                    )}
             </View>
         );
     }
@@ -80,7 +81,7 @@ class FavoritesList extends Component<Props, State> {
 
 const styles = StyleSheet.create({
     header: {
-        height: 50,
+        height: 40,
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
@@ -107,7 +108,6 @@ const styles = StyleSheet.create({
         color: "#fffaff",
     },
     placeholderContainer: {
-        display: "flex",
         justifyContent: "center",
         alignItems: "center",
         padding: 30,
@@ -118,6 +118,9 @@ const styles = StyleSheet.create({
         color: "#fc5130",
         textAlign: "center",
     },
+    list: {
+        marginTop: 15,
+    }
 });
 
 const mapStateToProps = (state: RootState) => ({

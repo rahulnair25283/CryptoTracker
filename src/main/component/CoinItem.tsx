@@ -10,7 +10,7 @@ interface Props {
     removeFromFavorites: (coin: Coin) => Action;
     navigation?: any;
 }
-interface State {}
+interface State { }
 
 export default class CoinItem extends Component<Props, State> {
     constructor(props: Props) {
@@ -28,7 +28,7 @@ export default class CoinItem extends Component<Props, State> {
             <View style={styles.item}>
                 <View style={styles.itemLeft}>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate("CoinDetails")}
+                        onPress={() => navigation.navigate("CoinDetails", data)}
                     >
                         <View style={styles.itemSummary}>
                             <View style={styles.icon}>
@@ -47,28 +47,28 @@ export default class CoinItem extends Component<Props, State> {
                             <View style={styles.hourlyChange}>
                                 <Text style={styles.changeLabel}>Hourly: </Text>
                                 {Number.parseFloat(data.percent_change_1h) >
-                                0 ? (
-                                    <Text style={styles.changePositive}>
-                                        {data.percent_change_1h}%
+                                    0 ? (
+                                        <Text style={styles.changePositive}>
+                                            {data.percent_change_1h}%
                                     </Text>
-                                ) : (
-                                    <Text style={styles.changeNegative}>
-                                        {data.percent_change_1h}%
+                                    ) : (
+                                        <Text style={styles.changeNegative}>
+                                            {data.percent_change_1h}%
                                     </Text>
-                                )}
+                                    )}
                             </View>
                             <View style={styles.hourlyChange}>
                                 <Text style={styles.changeLabel}>Daily: </Text>
                                 {Number.parseFloat(data.percent_change_24h) >
-                                0 ? (
-                                    <Text style={styles.changePositive}>
-                                        {data.percent_change_24h}%
+                                    0 ? (
+                                        <Text style={styles.changePositive}>
+                                            {data.percent_change_24h}%
                                     </Text>
-                                ) : (
-                                    <Text style={styles.changeNegative}>
-                                        {data.percent_change_24h}%
+                                    ) : (
+                                        <Text style={styles.changeNegative}>
+                                            {data.percent_change_24h}%
                                     </Text>
-                                )}
+                                    )}
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -85,12 +85,12 @@ export default class CoinItem extends Component<Props, State> {
                         {data.favorite ? (
                             <Icon name="favorite" size={20} color="#fc5130" />
                         ) : (
-                            <Icon
-                                name="favorite-border"
-                                size={20}
-                                color="#fc5130"
-                            />
-                        )}
+                                <Icon
+                                    name="favorite-border"
+                                    size={20}
+                                    color="#fc5130"
+                                />
+                            )}
                     </TouchableOpacity>
                 </View>
             </View>
@@ -102,40 +102,34 @@ import { StyleSheet } from "react-native";
 import { Action } from "../../types";
 
 const styles = StyleSheet.create({
-    separator: {
-        height: 0.5,
-        backgroundColor: "#fc5130",
-        marginLeft: "3%",
-        marginRight: "3%",
-    },
     item: {
-        marginLeft: 6,
-        marginRight: 6,
-        marginTop: 4,
-        marginBottom: 4,
-        borderWidth: 0.5,
+        marginLeft: 15,
+        marginRight: 15,
+        marginBottom: 15,
+        borderWidth: 0.4,
         borderColor: "#e2e2e2",
-        borderRadius: 3,
+        borderRadius: 5,
         display: "flex",
         flexDirection: "row",
+        backgroundColor: "#FAFFFD",
+        elevation: 5,
+        shadowColor: "#000",
+        shadowOffset: { width: 2, height: 5 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+    },
+    itemLeft: {
+        display: "flex",
+        flex: 0.85,
         paddingLeft: 10,
         paddingRight: 10,
         paddingTop: 20,
         paddingBottom: 20,
-        backgroundColor: "#FAFFFD",
-        elevation: 2,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 1.2,
-    },
-    itemLeft: {
-        display: "flex",
-        flex: 0.9,
     },
     itemRight: {
         display: "flex",
-        flex: 0.1,
+        flex: 0.15,
+        alignItems: "center",
     },
     itemSummary: {
         display: "flex",

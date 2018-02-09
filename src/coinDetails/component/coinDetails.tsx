@@ -1,35 +1,39 @@
 import React, { Component } from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { Coin } from "../../main/model";
+
+const { width, height } = Dimensions.get("window");
 
 interface Props {
     navigation: any;
 }
-interface State {}
+interface State { }
 
 class CoinDetails extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
     }
 
-    private renderHeader = () => (
+    private renderHeader = (coin: Coin) => (
         <View style={styles.header}>
             <TouchableOpacity
                 onPress={() => {
                     this.props.navigation.goBack();
                 }}
-                style={styles.backButton}
+                style={styles.buttonContainer}
             >
-                <Icon name="arrow-back" color="#ffffff" size={20} />
+                <Icon name="close" color="#050401" size={20} />
             </TouchableOpacity>
-            <View style={styles.headerTextContainer}>
-                <Text style={styles.headerText}>Coin Details</Text>
+            <View style={styles.content}>
+                <Text style={styles.coinName}>{coin.name}</Text>
             </View>
         </View>
     );
 
     public render() {
-        return <View>{this.renderHeader()}</View>;
+        const { params } = this.props.navigation.state;
+        return <View>{this.renderHeader(params)}</View>;
     }
 }
 
@@ -37,29 +41,37 @@ export default CoinDetails;
 
 const styles = StyleSheet.create({
     header: {
-        height: 50,
-        display: "flex",
-        flexDirection: "row",
+        height: height * 0.3,
         justifyContent: "center",
-        alignItems: "center",
-        padding: 10,
-        backgroundColor: "#30bced",
-        shadowOpacity: 0.3,
-        shadowRadius: 1,
-        shadowColor: "black",
-        shadowOffset: { height: 1, width: 0 },
+        alignItems: "flex-start",
+        paddingTop: 15,
+        backgroundColor: "#fc5130",
     },
-    backButton: {
+    buttonContainer: {
         flex: 0.1,
+        width: width,
+        justifyContent: "center",
+        alignItems: "flex-end",
+        paddingRight: 10,
+    },
+    content: {
+        flex: 0.9,
+        justifyContent: "flex-start",
+        alignSelf: "center",
+    },
+    coinName: {
+        fontSize: 25,
+        fontFamily: "lato",
+        color: "#050401",
     },
     headerTextContainer: {
-        flex: 0.9,
+        flex: 1,
         justifyContent: "center",
         alignItems: "center",
         right: 10,
     },
     headerText: {
-        fontSize: 18,
+        fontSize: 20,
         fontFamily: "lato",
         color: "#fffaff",
     },
