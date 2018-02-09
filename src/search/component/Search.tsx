@@ -96,6 +96,7 @@ class Search extends Component<Props, State> {
             data={item}
             addToFavorites={this.props.addToFavorites}
             removeFromFavorites={this.props.removeFromFavorites}
+            navigation={this.props.navigation}
         />
     );
 

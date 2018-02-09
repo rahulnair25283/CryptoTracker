@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { View, StyleSheet, TouchableOpacity, Text, Dimensions } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Image } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { Coin } from "../../main/model";
+import Icons from "../../main/icons";
 
 const { width, height } = Dimensions.get("window");
 
@@ -23,10 +24,23 @@ class CoinDetails extends Component<Props, State> {
                 }}
                 style={styles.buttonContainer}
             >
-                <Icon name="close" color="#050401" size={20} />
+                <Icon name="close" color="#ffffff" size={20} />
             </TouchableOpacity>
             <View style={styles.content}>
-                <Text style={styles.coinName}>{coin.name}</Text>
+                <View style={styles.icon}>
+                    <Image
+                        source={Icons[coin.symbol]}
+                        style={styles.iconImage}
+                    />
+                </View>
+                <View style={styles.coinName}>
+                    <Text style={styles.coinNameText}>{coin.name}</Text>
+                </View>
+                <View style={styles.price}>
+                    <Text style={styles.priceText}>$ {coin.price_usd}</Text>
+                    <Text style={styles.priceText}>  |  </Text>
+                    <Text style={styles.priceText}>{coin.price_btc}</Text>
+                </View>
             </View>
         </View>
     );
@@ -59,20 +73,32 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         alignSelf: "center",
     },
-    coinName: {
-        fontSize: 25,
-        fontFamily: "lato",
-        color: "#050401",
-    },
-    headerTextContainer: {
-        flex: 1,
+    icon: {
         justifyContent: "center",
         alignItems: "center",
-        right: 10,
     },
-    headerText: {
+    coinName: {
+        alignItems: "center",
+    },
+    coinNameText: {
+        fontSize: 40,
+        fontFamily: "lato",
+        color: "#ffffff",
+        fontWeight: "bold",
+    },
+    iconImage: {
+        height: 30,
+        width: 30,
+    },
+    price: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    priceText: {
         fontSize: 20,
         fontFamily: "lato",
-        color: "#fffaff",
-    },
+        color: "#ffffff",
+        marginLeft: 2,
+        marginRight: 2,
+    }
 });

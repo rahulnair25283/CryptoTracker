@@ -16,7 +16,6 @@ const App = StackNavigator(
         Search: { screen: SearchScreen },
     },
     {
-        mode: "modal",
         headerMode: "none",
     },
 );
