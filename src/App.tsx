@@ -3,19 +3,16 @@ import { StackNavigator } from "react-navigation";
 export interface Props { }
 export interface State { }
 
-import MainScreen from "./main/MainScreen";
-import FavoritesScreen from "./favorites/FavoritesScreen";
-import SearchScreen from "./search/SearchScreen";
+import NewMainScreen from "./NewMainScreen";
 import CoinDetailsScreen from "./coinDetails/coinDetailsScreen";
 
 const App = StackNavigator(
     {
-        Main: { screen: MainScreen },
+        NewMain: { screen: NewMainScreen },
         CoinDetails: { screen: CoinDetailsScreen },
-        Favorites: { screen: FavoritesScreen },
-        Search: { screen: SearchScreen },
     },
     {
+        mode: "modal",
         headerMode: "none",
     },
 );
