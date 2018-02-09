@@ -23,7 +23,7 @@ export default class SearchScreen extends Component<Props, State> {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#ffffff",
+        backgroundColor: "#f9f9f9",
         height: height,
     },
     statusBarBackground: {

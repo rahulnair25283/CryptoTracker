@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     coinNameText: {
-        fontSize: 40,
+        fontSize: 30,
         fontFamily: "lato",
         color: "#ffffff",
         fontWeight: "bold",
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     priceText: {
-        fontSize: 20,
+        fontSize: 18,
         fontFamily: "lato",
         color: "#ffffff",
         marginLeft: 2,

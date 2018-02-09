@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Text, View, Image, TouchableOpacity } from "react-native";
+import { Text, View, Image, TouchableOpacity, Dimensions } from "react-native";
 import { Coin } from "../model";
 import Icons from "../icons";
 import Icon from "react-native-vector-icons/MaterialIcons";
+
+const { height } = Dimensions.get("window");
 
 interface Props {
     data: Coin;
@@ -111,8 +113,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         display: "flex",
         flexDirection: "row",
-        backgroundColor: "#FAFFFD",
-        elevation: 5,
+        backgroundColor: "#ffffff",
+        elevation: 0,
         shadowColor: "#000",
         shadowOffset: { width: 2, height: 5 },
         shadowOpacity: 0.1,
@@ -162,6 +164,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     price: {
+        fontSize: 15,
         fontFamily: "lato",
         fontWeight: "bold",
         color: "#303036",
