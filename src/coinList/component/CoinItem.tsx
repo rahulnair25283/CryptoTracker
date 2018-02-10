@@ -3,6 +3,7 @@ import { Text, View, Image, TouchableOpacity } from "react-native";
 import { Coin } from "../../types";
 import Icons from "../../utils/icons";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import numeral from "numeral";
 
 interface Props {
     data: Coin;
@@ -39,37 +40,9 @@ export default class CoinItem extends Component<Props, State> {
                             </View>
                             <View style={styles.nameSymbol}>
                                 <Text style={styles.symbol}>{data.symbol}</Text>
-                                <Text style={styles.name}> | {data.name}</Text>
+                                <Text style={styles.name}>{data.name}</Text>
                             </View>
-                            <Text style={styles.price}>$ {data.price_usd}</Text>
-                        </View>
-                        <View style={styles.itemDetails}>
-                            <View style={styles.hourlyChange}>
-                                <Text style={styles.changeLabel}>Hourly: </Text>
-                                {Number.parseFloat(data.percent_change_1h) >
-                                    0 ? (
-                                        <Text style={styles.changePositive}>
-                                            {data.percent_change_1h}%
-                                    </Text>
-                                    ) : (
-                                        <Text style={styles.changeNegative}>
-                                            {data.percent_change_1h}%
-                                    </Text>
-                                    )}
-                            </View>
-                            <View style={styles.hourlyChange}>
-                                <Text style={styles.changeLabel}>Daily: </Text>
-                                {Number.parseFloat(data.percent_change_24h) >
-                                    0 ? (
-                                        <Text style={styles.changePositive}>
-                                            {data.percent_change_24h}%
-                                    </Text>
-                                    ) : (
-                                        <Text style={styles.changeNegative}>
-                                            {data.percent_change_24h}%
-                                    </Text>
-                                    )}
-                            </View>
+                            <Text style={styles.price}>{numeral(data.price_usd).format("$0,0.00")}</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -120,6 +93,7 @@ const styles = StyleSheet.create({
     },
     itemLeft: {
         display: "flex",
+        flexDirection: "row",
         flex: 0.85,
         paddingLeft: 10,
         paddingRight: 10,
@@ -136,6 +110,14 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flex: 1,
     },
+    price: {
+        justifyContent: "center",
+        alignSelf: "center",
+        fontSize: 15,
+        fontFamily: "lato",
+        fontWeight: "bold",
+        color: "#303036",
+    },
     icon: {
         justifyContent: "center",
         alignItems: "center",
@@ -146,7 +128,7 @@ const styles = StyleSheet.create({
     },
     nameSymbol: {
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         left: 10,
         width: 190,
     },
@@ -154,18 +136,12 @@ const styles = StyleSheet.create({
         fontFamily: "lato",
         fontWeight: "bold",
         color: "#050401",
-        fontSize: 16,
+        fontSize: 20,
     },
     name: {
         fontFamily: "lato",
         color: "#050401",
-        fontSize: 16,
-    },
-    price: {
         fontSize: 15,
-        fontFamily: "lato",
-        fontWeight: "bold",
-        color: "#303036",
     },
     itemDetails: {
         left: 40,
@@ -186,13 +162,13 @@ const styles = StyleSheet.create({
         fontFamily: "lato",
         fontSize: 12,
         fontWeight: "bold",
-        color: "green",
+        color: "#73a74a",
     },
     changeNegative: {
         fontFamily: "lato",
         fontSize: 12,
         fontWeight: "bold",
-        color: "red",
+        color: "#ff5353",
     },
     favorite: {
         flex: 1,

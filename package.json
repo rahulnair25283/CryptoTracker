@@ -17,6 +17,7 @@
     "appcenter": "^1.1.0",
     "appcenter-analytics": "^1.1.0",
     "appcenter-crashes": "^1.1.0",
+    "numeral": "^2.0.6",
     "react": "16.0.0",
     "react-native": "0.51.0",
     "react-native-config": "^0.11.5",
@@ -33,6 +34,7 @@
     "preset": "react-native"
   },
   "devDependencies": {
+    "@types/numeral": "^0.0.22",
     "@types/react": "^16.0.33",
     "@types/react-native": "^0.51.8",
     "@types/react-navigation": "^1.0.26",
