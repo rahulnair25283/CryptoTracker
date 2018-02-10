@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Image } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { Coin } from "../../main/model";
-import Icons from "../../main/icons";
+import { Coin } from "../../types";
+import Icons from "../../utils/icons";
 
 const { width, height } = Dimensions.get("window");
 

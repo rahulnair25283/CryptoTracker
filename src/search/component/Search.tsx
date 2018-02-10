@@ -11,8 +11,8 @@ import { connect } from "react-redux";
 import { searchCoin, clearSearch } from "../actions";
 import { Action } from "../../types";
 import { RootState, getSearchResult, getAllCoins } from "../../rootReducer";
-import { Coin } from "../../main/model";
-import CoinItem from "../../main/component/CoinItem";
+import { Coin } from "../../types";
+import CoinItem from "../../coinList/component/CoinItem";
 import { StyleSheet } from "react-native";
 import { addToFavorites, removeFromFavorites } from "../../favorites/actions";
 
@@ -61,19 +61,9 @@ class Search extends Component<Props, State> {
 
     private renderHeader = () => (
         <View style={styles.header}>
-            <View>
-                <TouchableOpacity
-                    onPress={() => {
-                        this.props.clearSearch();
-                        this.props.navigation.goBack();
-                    }}
-                >
-                    <Icon name="arrow-back" color="#ffffff" size={20} />
-                </TouchableOpacity>
-            </View>
             <View style={styles.searchBoxContainer}>
                 <TextInput
-                    placeholder={"Search for a coin..."}
+                    placeholder={"Type to start searching..."}
                     autoFocus
                     autoCapitalize="none"
                     autoCorrect={false}
@@ -81,12 +71,12 @@ class Search extends Component<Props, State> {
                     onChangeText={searchText => this.search(searchText)}
                     value={this.state.searchText}
                 />
-                <TouchableOpacity
+                {this.state.searchText ? <TouchableOpacity
                     style={styles.cancelSearchButton}
                     onPress={() => this.clear()}
                 >
                     <Icon name="close" color="#050401" size={20} />
-                </TouchableOpacity>
+                </TouchableOpacity> : null}
             </View>
         </View>
     );
@@ -137,32 +127,27 @@ export default connect(
 const styles = StyleSheet.create({
     header: {
         height: 40,
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "flex-start",
+        justifyContent: "center",
         alignItems: "center",
-        paddingLeft: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
         paddingTop: 5,
         paddingBottom: 5,
-        backgroundColor: "#30bced",
+        backgroundColor: "#ffffff",
         shadowOpacity: 0.3,
         shadowRadius: 1,
-        shadowColor: "black",
         shadowOffset: { height: 1, width: 0 },
     },
     searchBoxContainer: {
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "center",
         alignItems: "center",
-        marginLeft: 20,
         flex: 0.9,
         backgroundColor: "#ffffff",
-        borderRadius: 3,
     },
     searchBox: {
         flex: 1,
-        padding: 5,
         color: "#050401",
     },
     cancelSearchButton: {
@@ -176,7 +161,7 @@ const styles = StyleSheet.create({
     placeholderText: {
         fontSize: 12,
         fontFamily: "lato",
-        color: "#fc5130",
+        color: "#303036",
         textAlign: "center",
     },
     list: {

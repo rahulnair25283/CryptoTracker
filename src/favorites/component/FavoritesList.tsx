@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 import {
     View,
-    TouchableOpacity,
     StyleSheet,
     Text,
     FlatList,
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons";
 import { connect } from "react-redux";
 import { RootState, getFavorites } from "../../rootReducer";
 import { addToFavorites, removeFromFavorites } from "../actions";
-import { Coin } from "../../main/model";
+import { Coin } from "../../types";
 import { Action } from "../../types";
-import CoinItem from "../../main/component/CoinItem";
+import CoinItem from "../../coinList/component/CoinItem";
 
 interface Props {
     favorites: Coin[];
@@ -30,17 +28,7 @@ class FavoritesList extends Component<Props, State> {
 
     private renderHeader = () => (
         <View style={styles.header}>
-            <TouchableOpacity
-                onPress={() => {
-                    this.props.navigation.goBack();
-                }}
-                style={styles.backButton}
-            >
-                <Icon name="arrow-back" color="#ffffff" size={20} />
-            </TouchableOpacity>
-            <View style={styles.headerTextContainer}>
-                <Text style={styles.headerText}>Favorites</Text>
-            </View>
+            <Text style={styles.headerText}>Favorites</Text>
         </View>
     );
 
@@ -83,25 +71,13 @@ class FavoritesList extends Component<Props, State> {
 const styles = StyleSheet.create({
     header: {
         height: 40,
-        display: "flex",
-        flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
         padding: 10,
         backgroundColor: "#30bced",
         shadowOpacity: 0.3,
         shadowRadius: 1,
-        shadowColor: "black",
         shadowOffset: { height: 1, width: 0 },
-    },
-    backButton: {
-        flex: 0.1,
-    },
-    headerTextContainer: {
-        flex: 0.9,
-        justifyContent: "center",
-        alignItems: "center",
-        right: 10,
     },
     headerText: {
         fontSize: 18,
@@ -116,7 +92,7 @@ const styles = StyleSheet.create({
     placeholderText: {
         fontSize: 12,
         fontFamily: "lato",
-        color: "#fc5130",
+        color: "#303036",
         textAlign: "center",
     },
     list: {

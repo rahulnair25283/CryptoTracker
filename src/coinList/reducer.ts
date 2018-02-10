@@ -1,5 +1,4 @@
-import { Action } from "../types";
-import { Coin } from "./model";
+import { Action, Coin } from "../types";
 import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../favorites/actions";
 import {
     FETCH_COINS_REQUESTED,
@@ -39,9 +38,9 @@ const reducer = (
                     state.data.length === 0
                         ? payload
                         : state.data.map((x: Coin, i: number) => ({
-                              ...payload[i],
-                              favorite: x.favorite,
-                          })),
+                            ...payload[i],
+                            favorite: x.favorite,
+                        })),
             };
         case FETCH_COINS_FAILED:
             return {

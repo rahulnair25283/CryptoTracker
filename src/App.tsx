@@ -3,12 +3,12 @@ import { StackNavigator } from "react-navigation";
 export interface Props { }
 export interface State { }
 
-import NewMainScreen from "./NewMainScreen";
+import MainScreen from "./MainScreen";
 import CoinDetailsScreen from "./coinDetails/coinDetailsScreen";
 
 const App = StackNavigator(
     {
-        NewMain: { screen: NewMainScreen },
+        Main: { screen: MainScreen },
         CoinDetails: { screen: CoinDetailsScreen },
     },
     {

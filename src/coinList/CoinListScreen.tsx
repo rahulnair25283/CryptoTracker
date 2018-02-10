@@ -10,7 +10,7 @@ export interface Props {
     navigation: any;
 }
 
-export default class MainScreen extends Component<Props, State> {
+export default class CoinListScreen extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
     }

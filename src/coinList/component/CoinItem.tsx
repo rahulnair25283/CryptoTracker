@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { Text, View, Image, TouchableOpacity, Dimensions } from "react-native";
-import { Coin } from "../model";
-import Icons from "../icons";
+import { Text, View, Image, TouchableOpacity } from "react-native";
+import { Coin } from "../../types";
+import Icons from "../../utils/icons";
 import Icon from "react-native-vector-icons/MaterialIcons";
-
-const { height } = Dimensions.get("window");
 
 interface Props {
     data: Coin;

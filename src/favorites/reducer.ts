@@ -1,5 +1,4 @@
-import { Action } from "../types";
-import { Coin } from "../main/model";
+import { Action, Coin } from "../types";
 import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "./actions";
 
 export interface FavoritesState {

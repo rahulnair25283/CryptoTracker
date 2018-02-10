@@ -1,5 +1,4 @@
-import { Action } from "../types";
-import { Coin } from "./model";
+import { Action, Coin } from "../types";
 
 export const FETCH_COINS = "FETCH_COINS";
 export const FETCH_COINS_REQUESTED = "FETCH_COINS_REQUESTED";

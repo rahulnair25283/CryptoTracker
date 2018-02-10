@@ -6,7 +6,6 @@ import {
     StyleSheet,
     View,
     Text,
-    TouchableOpacity,
 } from "react-native";
 import CoinItem from "./CoinItem";
 import { connect } from "react-redux";
@@ -15,8 +14,7 @@ import { MainState } from "../reducer";
 import { fetchCoins } from "../actions";
 import { addToFavorites, removeFromFavorites } from "../../favorites/actions";
 import { Action } from "redux";
-import { Coin } from "../model";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import { Coin } from "../../types";
 
 interface Props {
     mainState: MainState;
@@ -77,23 +75,7 @@ class CoinList extends Component<Props, State> {
 
     private renderHeader = () => (
         <View style={styles.header}>
-            <View style={styles.headerTextContainer}>
-                <Text style={styles.headerText}>Coins</Text>
-            </View>
-            <View style={styles.favoritesButtonContainer}>
-                <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate("Favorites")}
-                >
-                    <Icon name="favorite-border" color="#ffffff" size={20} />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.searchButtonContainer}>
-                <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate("Search")}
-                >
-                    <Icon name="search" color="#ffffff" size={20} />
-                </TouchableOpacity>
-            </View>
+            <Text style={styles.headerText}>Market</Text>
         </View>
     );
 
@@ -142,36 +124,19 @@ export default connect(
 const styles = StyleSheet.create({
     header: {
         height: 40,
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
         alignItems: "center",
-        padding: 10,
+        paddingTop: 10,
+        paddingBottom: 10,
         backgroundColor: "#30bced",
         shadowOpacity: 0.3,
         shadowRadius: 1,
         shadowColor: "black",
         shadowOffset: { height: 1, width: 0 },
     },
-    headerTextContainer: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        left: 20,
-    },
     headerText: {
         fontSize: 18,
         fontFamily: "lato",
         color: "#fffaff",
-    },
-    favoritesButtonContainer: {
-        justifyContent: "center",
-        alignItems: "center",
-        right: 20,
-    },
-    searchButtonContainer: {
-        justifyContent: "center",
-        alignItems: "center",
     },
     list: {
         marginTop: 15,

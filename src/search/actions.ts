@@ -1,5 +1,4 @@
-import { Action } from "../types";
-import { Coin } from "../main/model";
+import { Action, Coin } from "../types";
 
 export const SEARCH_COIN = "SEARCH_COIN";
 export const CLEAR_SEARCH = "CLEAR_SEARCH";

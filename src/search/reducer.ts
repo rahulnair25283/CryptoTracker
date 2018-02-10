@@ -1,6 +1,5 @@
-import { Action } from "../types";
+import { Action, Coin } from "../types";
 import { SEARCH_COIN, CLEAR_SEARCH } from "./actions";
-import { Coin } from "../main/model";
 import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../favorites/actions";
 
 export interface SearchState {
@@ -17,7 +16,7 @@ const reducer = (state: SearchState = initialState, action: Action) => {
         case SEARCH_COIN:
             const { searchText, allCoins } = payload;
             return {
-                searchResult: allCoins.filter(
+                searchResult: !searchText ? [] : allCoins.filter(
                     x =>
                         x.name
                             .toLowerCase()

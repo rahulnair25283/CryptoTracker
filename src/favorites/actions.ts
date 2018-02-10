@@ -1,5 +1,4 @@
-import { Action } from "../types";
-import { Coin } from "../main/model";
+import { Action, Coin } from "../types";
 
 export const ADD_TO_FAVORITES = "ADD_TO_FAVORITES";
 export const REMOVE_FROM_FAVORITES = "REMOVE_FROM_FAVORITES";

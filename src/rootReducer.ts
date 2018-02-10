@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import main, { MainState } from "./main/reducer";
+import main, { MainState } from "./coinList/reducer";
 import search, { SearchState } from "./search/reducer";
 import favorites, { FavoritesState } from "./favorites/reducer";
-import { Coin } from "./main/model";
+import { Coin } from "./types";
 
 export interface RootState {
     main: MainState;
