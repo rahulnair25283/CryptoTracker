@@ -53,21 +53,21 @@ class CoinDetails extends Component<Props, State> {
 
     private renderBody = (coin: Coin) => (
         <View style={styles.body}>
-            <View style={styles.priceCard}>
-                <TouchableOpacity onPress={() => this.setState({
-                    baseCurrency: this.state.baseCurrency === "usd" ? "btc" : "usd",
-                })}>
-                    {this.state.baseCurrency === "usd"
-                        ? <Text style={styles.priceText}>$ {coin.price_usd}</Text>
-                        : <Text style={styles.priceText}>
-                            <FAIcon name="btc" size={50} /> {coin.price_btc}
-                        </Text>}
-                    <View style={styles.marketCap}>
-                        <Text style={styles.marketCapText}>{numeral(coin.market_cap_usd).format("$0,0.00 a")}</Text>
-                        <Text style={styles.marketCapLabel}>market cap</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity onPress={() => this.setState({
+                baseCurrency: this.state.baseCurrency === "usd" ? "btc" : "usd",
+            })}
+                style={styles.priceCard}
+                activeOpacity={0.8}>
+                {this.state.baseCurrency === "usd"
+                    ? <Text style={styles.priceText}>{numeral(coin.price_usd).format("$0,0.00")}</Text>
+                    : <Text style={styles.priceText}>
+                        <FAIcon name="btc" size={50} /> {coin.price_btc}
+                    </Text>}
+                <View style={styles.marketCap}>
+                    <Text style={styles.marketCapText}>{numeral(coin.market_cap_usd).format("$0,0.00 a")}</Text>
+                    <Text style={styles.marketCapLabel}>market cap</Text>
+                </View>
+            </TouchableOpacity>
             <View style={styles.graphCard}>
                 <Text style={{ fontSize: 11, fontFamily: "lato", color: "grey" }}>We will be showing a chart here...</Text>
             </View>
