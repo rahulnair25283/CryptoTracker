@@ -5,8 +5,9 @@ import FAIcon from "react-native-vector-icons/FontAwesome";
 import { Coin } from "../../types";
 import Icons from "../../utils/icons";
 import numeral from "numeral";
+import { PercentChange } from "../../coinList/component/CoinItem";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 interface Props {
     navigation: any;
@@ -52,44 +53,51 @@ class CoinDetails extends Component<Props, State> {
 
     private renderBody = (coin: Coin) => (
         <View style={styles.body}>
-            <TouchableOpacity style={styles.price} onPress={() => this.setState({
-                baseCurrency: this.state.baseCurrency === "usd" ? "btc" : "usd",
-            })}>
-                {this.state.baseCurrency === "usd"
-                    ? <Text style={styles.priceText}>$ {coin.price_usd}</Text>
-                    : <Text style={styles.priceText}>
-                        <FAIcon name="btc" size={50} /> {coin.price_btc}
-                    </Text>}
+            <View style={styles.priceCard}>
+                <TouchableOpacity onPress={() => this.setState({
+                    baseCurrency: this.state.baseCurrency === "usd" ? "btc" : "usd",
+                })}>
+                    {this.state.baseCurrency === "usd"
+                        ? <Text style={styles.priceText}>$ {coin.price_usd}</Text>
+                        : <Text style={styles.priceText}>
+                            <FAIcon name="btc" size={50} /> {coin.price_btc}
+                        </Text>}
+                    <View style={styles.marketCap}>
+                        <Text style={styles.marketCapText}>{numeral(coin.market_cap_usd).format("$0,0.00 a")}</Text>
+                        <Text style={styles.marketCapLabel}>market cap</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.graphCard}>
+                <Text style={{ fontSize: 11, fontFamily: "lato", color: "grey" }}>We will be showing a chart here...</Text>
+            </View>
+            <View style={styles.percentChangeCard}>
+                {PercentChange(coin.percent_change_1h, "hourly")}
+                {PercentChange(coin.percent_change_24h, "daily")}
+                {PercentChange(coin.percent_change_7d, "weekly")}
+            </View>
+            <View style={styles.supplyCard}>
+                {this.supply(coin.available_supply, "available")}
+                {this.supply(coin.max_supply, "max")}
+                {this.supply(coin.total_supply, "total")}
+            </View>
+            <TouchableOpacity style={styles.fab} activeOpacity={0.8}>
+                {coin.favorite
+                    ? <Icon name="star" size={30} color="#fc5130" />
+                    : <Icon name="star-border" size={30} color="#fc5130" />}
             </TouchableOpacity>
-            <View style={styles.marketCap}>
-                <Text style={styles.marketCapText}>Mkt {numeral(coin.market_cap_usd).format("$0,0.00 a")}</Text>
-            </View>
-            <View style={styles.percentChangeContainer}>
-                <View style={styles.percentChange}>
-                    {Number.parseFloat(coin.percent_change_1h) < 0
-                        ? <Text style={styles.percentChangeNegative}>{coin.percent_change_1h}%</Text>
-                        : <Text style={styles.percentChangePositive}>{coin.percent_change_1h}%</Text>}
-                    <Text style={styles.percentChangeText}>Hourly</Text>
-                </View>
-                <View style={styles.percentChange}>
-                    {Number.parseFloat(coin.percent_change_24h) < 0
-                        ? <Text style={styles.percentChangeNegative}>{coin.percent_change_24h}%</Text>
-                        : <Text style={styles.percentChangePositive}>{coin.percent_change_24h}%</Text>}
-                    <Text style={styles.percentChangeText}>Daily</Text>
-                </View>
-                <View style={styles.percentChange}>
-                    {Number.parseFloat(coin.percent_change_7d) < 0
-                        ? <Text style={styles.percentChangeNegative}>{coin.percent_change_7d}%</Text>
-                        : <Text style={styles.percentChangePositive}>{coin.percent_change_7d}%</Text>}
-                    <Text style={styles.percentChangeText}>Weely</Text>
-                </View>
-            </View>
         </View>
     );
 
+    private supply = (value: string, label: string) =>
+        <View style={styles.supply}>
+            <Text style={styles.supplyValue}>{numeral(value).format("0,0")}</Text>
+            <Text style={styles.supplyLabel}>{label}</Text>
+        </View>
+
     public render() {
         const { params } = this.props.navigation.state;
-        return <View>
+        return <View style={styles.container}>
             {this.renderHeader(params)}
             {this.renderBody(params)}
         </View>;
@@ -99,8 +107,11 @@ class CoinDetails extends Component<Props, State> {
 export default CoinDetails;
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
     header: {
-        height: height * 0.18,
+        flex: 0.2,
         justifyContent: "center",
         alignItems: "flex-start",
         paddingTop: 15,
@@ -147,53 +158,124 @@ const styles = StyleSheet.create({
         fontFamily: "lato",
         color: "#ffffff",
     },
-    body: {},
-    price: {
-        paddingTop: 30,
-        paddingBottom: 5,
-        flexDirection: "row",
+    body: {
+        flex: 1,
+        paddingTop: 10,
+        paddingLeft: 15,
+        paddingRight: 15,
+    },
+    priceCard: {
+        flex: 0.25,
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#ffffff",
+        borderColor: "#e2e2e2",
+        borderWidth: 0.4,
+        borderRadius: 10,
+        elevation: 0,
+        shadowColor: "#000",
+        shadowOffset: { width: 2, height: 5 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        padding: 10,
+        marginBottom: 15,
     },
     priceText: {
         fontSize: 45,
         fontFamily: "lato",
-        color: "#303036",
+        color: "#30bced",
+        paddingBottom: 10,
     },
     marketCap: {
-        flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        paddingBottom: 10,
     },
     marketCapText: {
         fontSize: 13,
         fontFamily: "lato",
         color: "#303036",
     },
-    percentChangeContainer: {
-        flexDirection: "row",
-        justifyContent: "space-around",
-        alignItems: "center",
-        padding: 10
+    marketCapLabel: {
+        fontSize: 11,
+        fontFamily: "lato",
+        color: "grey",
     },
-    percentChange: {
-        flexDirection: "column",
+    graphCard: {
+        flex: 0.5,
+        backgroundColor: "#ffffff",
+        borderColor: "#e2e2e2",
+        borderWidth: 0.4,
+        borderRadius: 10,
+        elevation: 0,
+        shadowColor: "#000",
+        shadowOffset: { width: 2, height: 5 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        padding: 10,
+        marginBottom: 15,
         justifyContent: "center",
         alignItems: "center",
     },
-    percentChangeNegative: {
-        fontFamily: "lato",
-        color: "#ff5353",
-        fontWeight: "bold",
+    percentChangeCard: {
+        flex: 0.1,
+        backgroundColor: "#ffffff",
+        borderColor: "#e2e2e2",
+        borderWidth: 0.4,
+        borderRadius: 10,
+        elevation: 0,
+        shadowColor: "#000",
+        shadowOffset: { width: 2, height: 5 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "stretch",
+        padding: 20,
+        marginBottom: 15,
     },
-    percentChangePositive: {
-        fontFamily: "lato",
-        color: "#73a74a",
-        fontWeight: "bold",
+    supplyCard: {
+        flex: 0.1,
+        backgroundColor: "#ffffff",
+        borderColor: "#e2e2e2",
+        borderWidth: 0.4,
+        borderRadius: 10,
+        elevation: 0,
+        shadowColor: "#000",
+        shadowOffset: { width: 2, height: 5 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "stretch",
+        padding: 20,
+        marginBottom: 15,
     },
-    percentChangeText: {
+    supply: {
+        alignItems: "center",
+    },
+    supplyValue: {
         fontFamily: "lato",
+        fontSize: 11,
         color: "#303036",
+    },
+    supplyLabel: {
+        fontFamily: "lato",
+        fontSize: 11,
+        color: "grey",
+    },
+    fab: {
+        position: "absolute",
+        bottom: 10,
+        height: 50,
+        width: 50,
+        borderRadius: 25,
+        elevation: 10,
+        shadowColor: "#000",
+        shadowOffset: { width: 2, height: 5 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center",
     }
 });

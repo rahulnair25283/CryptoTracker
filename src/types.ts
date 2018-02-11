@@ -14,7 +14,7 @@ export interface Coin {
   market_cap_usd: string;
   available_supply: string;
   total_supply: string;
-  max_supply: String;
+  max_supply: string;
   percent_change_1h: string;
   percent_change_24h: string;
   percent_change_7d: string;

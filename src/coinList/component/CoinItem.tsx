@@ -47,9 +47,9 @@ export default class CoinItem extends Component<Props, State> {
                             <Text style={styles.price}>{numeral(data.price_usd).format("$0,0.00")}</Text>
                         </View>
                         <View style={styles.itemDetails}>
-                            {this.percentChange(data.percent_change_1h, "hourly")}
-                            {this.percentChange(data.percent_change_24h, "daily")}
-                            {this.percentChange(data.percent_change_7d, "weekly")}
+                            {PercentChange(data.percent_change_1h, "hourly")}
+                            {PercentChange(data.percent_change_24h, "daily")}
+                            {PercentChange(data.percent_change_7d, "weekly")}
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -62,7 +62,7 @@ export default class CoinItem extends Component<Props, State> {
                         }
                     >
                         {data.favorite ? (
-                            <Icon name="start" size={25} color="#fc5130" />
+                            <Icon name="star" size={25} color="#fc5130" />
                         ) : (
                                 <Icon
                                     name="star-border"
@@ -75,18 +75,19 @@ export default class CoinItem extends Component<Props, State> {
             </View>
         );
     }
-
-    private percentChange = (value: string, label: string) =>
-        <View style={styles.percentChange}>
-            <View style={styles.changeValue}>
-                <Text style={styles.changeValueText}>{value}%</Text>
-                {Number.parseFloat(value) > 0
-                    ? <Icon name="arrow-upward" size={15} color="green" />
-                    : <Icon name="arrow-downward" size={15} color="#ff7040" />}
-            </View>
-            <Text style={styles.changeLabel}>{label}</Text>
-        </View>
 }
+
+export const PercentChange = (value: string, label: string) => (
+    <View style={styles.percentChange}>
+        <View style={styles.changeValue}>
+            <Text style={styles.changeValueText}>{value}%</Text>
+            {Number.parseFloat(value) > 0
+                ? <Icon name="arrow-upward" size={15} color="green" />
+                : <Icon name="arrow-downward" size={15} color="#ff7040" />}
+        </View>
+        <Text style={styles.changeLabel}>{label}</Text>
+    </View>
+);
 
 import { StyleSheet } from "react-native";
 import { Action } from "../../types";
