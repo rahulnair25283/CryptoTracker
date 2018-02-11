@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import main, { MainState } from "./coinList/reducer";
 import search, { SearchState } from "./search/reducer";
-import favorites, { FavoritesState } from "./favorites/reducer";
+import favorites, { FavoritesState } from "./watchList/reducer";
 import { Coin } from "./types";
 
 export interface RootState {

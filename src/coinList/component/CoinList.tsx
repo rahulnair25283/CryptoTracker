@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import { RootState, getMainState } from "../../rootReducer";
 import { MainState } from "../reducer";
 import { fetchCoins } from "../actions";
-import { addToFavorites, removeFromFavorites } from "../../favorites/actions";
+import { addToFavorites, removeFromFavorites } from "../../watchList/actions";
 import { Action } from "redux";
 import { Coin } from "../../types";
 
@@ -139,6 +139,6 @@ const styles = StyleSheet.create({
         color: "#fffaff",
     },
     list: {
-        marginTop: 15,
+        paddingTop: 15,
     }
 });

@@ -1,6 +1,6 @@
 import { Action, Coin } from "../types";
 import { SEARCH_COIN, CLEAR_SEARCH } from "./actions";
-import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../favorites/actions";
+import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../watchList/actions";
 
 export interface SearchState {
     searchResult: Coin[];

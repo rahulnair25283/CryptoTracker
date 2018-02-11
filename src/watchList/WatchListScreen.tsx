@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import StatusBar from "../statusBar/StatusBar";
-import FavoritesList from "./component/FavoritesList";
+import WatchList from "./component/WatchList";
 
 const { height } = Dimensions.get("window");
 
@@ -10,7 +10,7 @@ export interface Props {
     navigation: any;
 }
 
-export default class MainScreen extends Component<Props, State> {
+export default class WatchListScreen extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
     }
@@ -19,7 +19,7 @@ export default class MainScreen extends Component<Props, State> {
         return (
             <View style={styles.container}>
                 <StatusBar style={styles.statusBarBackground} />
-                <FavoritesList navigation={this.props.navigation} />
+                <WatchList navigation={this.props.navigation} />
             </View>
         );
     }

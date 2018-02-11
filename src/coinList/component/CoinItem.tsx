@@ -32,23 +32,29 @@ export default class CoinItem extends Component<Props, State> {
                         onPress={() => navigation.navigate("CoinDetails", data)}
                     >
                         <View style={styles.itemSummary}>
-                            <View style={styles.icon}>
-                                <Image
-                                    source={Icons[data.symbol]}
-                                    style={styles.iconImage}
-                                />
-                            </View>
-                            <View style={styles.nameSymbol}>
-                                <Text style={styles.symbol}>{data.symbol}</Text>
-                                <Text style={styles.name}>{data.name}</Text>
+                            <View style={styles.iconNameSymbol}>
+                                <View style={styles.icon}>
+                                    <Image
+                                        source={Icons[data.symbol]}
+                                        style={styles.iconImage}
+                                    />
+                                </View>
+                                <View style={styles.nameSymbol}>
+                                    <Text style={styles.symbol}>{data.symbol}</Text>
+                                    <Text style={styles.name}>{data.name}</Text>
+                                </View>
                             </View>
                             <Text style={styles.price}>{numeral(data.price_usd).format("$0,0.00")}</Text>
+                        </View>
+                        <View style={styles.itemDetails}>
+                            {this.percentChange(data.percent_change_1h, "hourly")}
+                            {this.percentChange(data.percent_change_24h, "daily")}
+                            {this.percentChange(data.percent_change_7d, "weekly")}
                         </View>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.itemRight}>
                     <TouchableOpacity
-                        style={styles.favorite}
                         onPress={() =>
                             data.favorite
                                 ? removeFromFavorites(data)
@@ -56,11 +62,11 @@ export default class CoinItem extends Component<Props, State> {
                         }
                     >
                         {data.favorite ? (
-                            <Icon name="favorite" size={20} color="#fc5130" />
+                            <Icon name="start" size={25} color="#fc5130" />
                         ) : (
                                 <Icon
-                                    name="favorite-border"
-                                    size={20}
+                                    name="star-border"
+                                    size={25}
                                     color="#fc5130"
                                 />
                             )}
@@ -69,6 +75,17 @@ export default class CoinItem extends Component<Props, State> {
             </View>
         );
     }
+
+    private percentChange = (value: string, label: string) =>
+        <View style={styles.percentChange}>
+            <View style={styles.changeValue}>
+                <Text style={styles.changeValueText}>{value}%</Text>
+                {Number.parseFloat(value) > 0
+                    ? <Icon name="arrow-upward" size={15} color="green" />
+                    : <Icon name="arrow-downward" size={15} color="#ff7040" />}
+            </View>
+            <Text style={styles.changeLabel}>{label}</Text>
+        </View>
 }
 
 import { StyleSheet } from "react-native";
@@ -76,14 +93,14 @@ import { Action } from "../../types";
 
 const styles = StyleSheet.create({
     item: {
+        flex: 1,
+        flexDirection: "row",
         marginLeft: 15,
         marginRight: 15,
         marginBottom: 15,
         borderWidth: 0.4,
         borderColor: "#e2e2e2",
-        borderRadius: 5,
-        display: "flex",
-        flexDirection: "row",
+        borderRadius: 10,
         backgroundColor: "#ffffff",
         elevation: 0,
         shadowColor: "#000",
@@ -92,87 +109,71 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
     },
     itemLeft: {
-        display: "flex",
-        flexDirection: "row",
         flex: 0.85,
         paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 20,
-        paddingBottom: 20,
-    },
-    itemRight: {
-        display: "flex",
-        flex: 0.15,
-        alignItems: "center",
+        paddingTop: 10,
+        paddingBottom: 10,
     },
     itemSummary: {
-        display: "flex",
         flexDirection: "row",
-        flex: 1,
+        justifyContent: "space-between",
+        alignItems: "stretch",
+        paddingBottom: 15,
     },
-    price: {
-        justifyContent: "center",
-        alignSelf: "center",
-        fontSize: 15,
-        fontFamily: "lato",
-        fontWeight: "bold",
-        color: "#303036",
+    iconNameSymbol: {
+        flexDirection: "row",
     },
     icon: {
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
     },
     iconImage: {
-        height: 30,
-        width: 30,
+        height: 40,
+        width: 40,
     },
     nameSymbol: {
-        display: "flex",
         flexDirection: "column",
         left: 10,
-        width: 190,
     },
     symbol: {
         fontFamily: "lato",
-        fontWeight: "bold",
-        color: "#050401",
-        fontSize: 20,
+        color: "#303036",
+        fontSize: 22,
     },
     name: {
         fontFamily: "lato",
-        color: "#050401",
-        fontSize: 15,
+        color: "#303036",
+        fontSize: 13,
+    },
+    price: {
+        fontSize: 22,
+        fontFamily: "lato",
+        color: "#30bced",
+    },
+    itemRight: {
+        flex: 0.15,
+        alignItems: "center",
+        paddingTop: 10,
     },
     itemDetails: {
-        left: 40,
-        display: "flex",
+        left: 5,
         flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "stretch",
     },
-    hourlyChange: {
-        display: "flex",
-        flexDirection: "row",
-        width: 180,
+    percentChange: {
+        alignItems: "center",
     },
     changeLabel: {
         fontFamily: "lato",
-        fontSize: 12,
-        color: "#050401",
+        fontSize: 11,
+        color: "grey",
     },
-    changePositive: {
+    changeValue: {
+        flexDirection: "row",
+    },
+    changeValueText: {
         fontFamily: "lato",
-        fontSize: 12,
-        fontWeight: "bold",
-        color: "#73a74a",
-    },
-    changeNegative: {
-        fontFamily: "lato",
-        fontSize: 12,
-        fontWeight: "bold",
-        color: "#ff5353",
-    },
-    favorite: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        fontSize: 11,
     },
 });

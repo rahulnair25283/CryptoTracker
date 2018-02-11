@@ -20,7 +20,7 @@ interface Props {
 }
 interface State { }
 
-class FavoritesList extends Component<Props, State> {
+class WatchList extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {};
@@ -28,7 +28,7 @@ class FavoritesList extends Component<Props, State> {
 
     private renderHeader = () => (
         <View style={styles.header}>
-            <Text style={styles.headerText}>Favorites</Text>
+            <Text style={styles.headerText}>Watch List</Text>
         </View>
     );
 
@@ -40,8 +40,7 @@ class FavoritesList extends Component<Props, State> {
                 {!favorites || favorites.length === 0 ? (
                     <View style={styles.placeholderContainer}>
                         <Text style={styles.placeholderText}>
-                            You don't have any favorites yet! Go click some
-                            hearts and come back...
+                            You haven't set up a watch list yet...
                         </Text>
                     </View>
                 ) : (
@@ -114,4 +113,4 @@ export default connect(
     mapStateToProps,
     { addToFavorites, removeFromFavorites },
     mergeProps,
-)(FavoritesList);
+)(WatchList);

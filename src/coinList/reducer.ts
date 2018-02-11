@@ -1,5 +1,5 @@
 import { Action, Coin } from "../types";
-import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../favorites/actions";
+import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../watchList/actions";
 import {
     FETCH_COINS_REQUESTED,
     FETCH_COINS_SUCCEEDED,

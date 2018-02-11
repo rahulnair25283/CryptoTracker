@@ -14,7 +14,7 @@ import { RootState, getSearchResult, getAllCoins } from "../../rootReducer";
 import { Coin } from "../../types";
 import CoinItem from "../../coinList/component/CoinItem";
 import { StyleSheet } from "react-native";
-import { addToFavorites, removeFromFavorites } from "../../favorites/actions";
+import { addToFavorites, removeFromFavorites } from "../../watchList/actions";
 
 interface Props {
     searchResult: Coin[];

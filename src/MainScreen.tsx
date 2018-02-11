@@ -5,7 +5,7 @@ export interface Props { }
 export interface State { }
 
 import CoinListScreen from "./coinList/CoinListScreen";
-import FavoritesScreen from "./favorites/FavoritesScreen";
+import WatchListScreen from "./watchList/WatchListScreen";
 import SearchScreen from "./search/SearchScreen";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
@@ -20,10 +20,10 @@ const MainScreen = TabNavigator(
             })
         },
         Favorites: {
-            screen: FavoritesScreen,
+            screen: WatchListScreen,
             navigationOptions: () => ({
                 tabBarIcon: ({ focused, tintColor }) => {
-                    return <Icon name="favorite-border" size={25} color={focused ? tintColor : "gray"} />
+                    return <Icon name="star-border" size={25} color={focused ? tintColor : "gray"} />
                 }
             })
         },
