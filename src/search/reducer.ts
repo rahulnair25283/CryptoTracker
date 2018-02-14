@@ -1,5 +1,4 @@
 import { Action, Coin } from "../types";
-import { SEARCH_COIN, CLEAR_SEARCH } from "./actions";
 import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../watchList/actions";
 
 export interface SearchState {
@@ -13,23 +12,6 @@ const initialState: SearchState = {
 const reducer = (state: SearchState = initialState, action: Action) => {
     const { type, payload } = action;
     switch (type) {
-        case SEARCH_COIN:
-            const { searchText, allCoins } = payload;
-            return {
-                searchResult: !searchText ? [] : allCoins.filter(
-                    x =>
-                        x.name
-                            .toLowerCase()
-                            .startsWith(searchText.toLowerCase()) ||
-                        x.symbol
-                            .toLowerCase()
-                            .startsWith(searchText.toLowerCase()),
-                ),
-            };
-        case CLEAR_SEARCH:
-            return {
-                searchResult: [],
-            };
         case ADD_TO_FAVORITES:
             return {
                 searchResult: state.searchResult.map(x => {

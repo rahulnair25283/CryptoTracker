@@ -4,7 +4,7 @@ import { TabNavigator, TabBarBottom } from "react-navigation";
 export interface Props { }
 export interface State { }
 
-import CoinListScreen from "./coinList/CoinListScreen";
+import CoinListScreen from "./coins/CoinListScreen";
 import WatchListScreen from "./watchList/WatchListScreen";
 import SearchScreen from "./search/SearchScreen";
 import Icon from "react-native-vector-icons/MaterialIcons";

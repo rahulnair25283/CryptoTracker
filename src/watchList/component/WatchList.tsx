@@ -4,16 +4,20 @@ import {
     StyleSheet,
     Text,
     FlatList,
+    TouchableOpacity,
 } from "react-native";
 import { connect } from "react-redux";
 import { RootState, getFavorites } from "../../rootReducer";
 import { addToFavorites, removeFromFavorites } from "../actions";
+import { fetchCoins } from "../../coins/actions";
 import { Coin } from "../../types";
 import { Action } from "../../types";
-import CoinItem from "../../coinList/component/CoinItem";
+import CoinItem from "../../coins/component/CoinItem";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface Props {
     favorites: Coin[];
+    fetchCoins: () => Action;
     addToFavorites: (coin: Coin) => Action;
     removeFromFavorites: (coin: Coin) => Action;
     navigation: any;
@@ -26,21 +30,25 @@ class WatchList extends Component<Props, State> {
         this.state = {};
     }
 
+    public componentDidMount() {
+        this.props.fetchCoins();
+    }
+
     private renderHeader = () => (
         <View style={styles.header}>
-            <Text style={styles.headerText}>Watch List</Text>
+            <Text style={styles.headerText}>My Watchlist</Text>
         </View>
     );
 
     public render() {
         const { favorites } = this.props;
         return (
-            <View>
+            <View style={styles.container}>
                 {this.renderHeader()}
                 {!favorites || favorites.length === 0 ? (
                     <View style={styles.placeholderContainer}>
                         <Text style={styles.placeholderText}>
-                            You haven't set up a watch list yet...
+                            Hey noob, lets add some coins!
                         </Text>
                     </View>
                 ) : (
@@ -51,6 +59,12 @@ class WatchList extends Component<Props, State> {
                             style={styles.list}
                         />
                     )}
+                <TouchableOpacity
+                    style={styles.fab}
+                    activeOpacity={0.7}
+                    onPress={() => this.props.navigation.navigate("Search")}>
+                    <Icon name="add" size={25} color="#ffffff" />
+                </TouchableOpacity>
             </View>
         );
     }
@@ -68,6 +82,9 @@ class WatchList extends Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
     header: {
         height: 40,
         justifyContent: "center",
@@ -96,6 +113,23 @@ const styles = StyleSheet.create({
     },
     list: {
         marginTop: 15,
+    },
+    fab: {
+        position: "absolute",
+        bottom: 20,
+        right: 20,
+        height: 50,
+        width: 50,
+        backgroundColor: "#30bced",
+        borderRadius: 25,
+        elevation: 5,
+        shadowColor: "#000",
+        shadowOffset: { width: 2, height: 5 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center",
     }
 });
 
@@ -111,6 +145,6 @@ const mergeProps = (stateToProps, dispatchToProps, ownProps) => ({
 
 export default connect(
     mapStateToProps,
-    { addToFavorites, removeFromFavorites },
+    { fetchCoins, addToFavorites, removeFromFavorites },
     mergeProps,
 )(WatchList);

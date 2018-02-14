@@ -5,7 +5,7 @@ import FAIcon from "react-native-vector-icons/FontAwesome";
 import { Coin } from "../../types";
 import Icons from "../../utils/icons";
 import numeral from "numeral";
-import { PercentChange } from "../../coinList/component/CoinItem";
+import { PercentChange } from "../../coins/component/CoinItem";
 
 const { width } = Dimensions.get("window");
 

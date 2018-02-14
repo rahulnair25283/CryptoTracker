@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
-import { Coin } from "../../types";
+import { Coin, Action } from "../../types";
 import Icons from "../../utils/icons";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import numeral from "numeral";
+import { StyleSheet } from "react-native";
 
 interface Props {
     data: Coin;
@@ -88,9 +89,6 @@ export const PercentChange = (value: string, label: string) => (
         <Text style={styles.changeLabel}>{label}</Text>
     </View>
 );
-
-import { StyleSheet } from "react-native";
-import { Action } from "../../types";
 
 const styles = StyleSheet.create({
     item: {

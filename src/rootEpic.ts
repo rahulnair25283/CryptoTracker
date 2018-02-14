@@ -1,4 +1,4 @@
-import fetchCoinsEpic from "./coinList/epic";
+import fetchCoinsEpic from "./coins/epic";
 import { combineEpics } from "redux-observable";
 
 const root = combineEpics(fetchCoinsEpic);
