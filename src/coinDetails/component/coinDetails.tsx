@@ -5,7 +5,7 @@ import FAIcon from "react-native-vector-icons/FontAwesome";
 import { Coin } from "../../types";
 import Icons from "../../utils/icons";
 import numeral from "numeral";
-import { PercentChange } from "../../coins/component/CoinItem";
+// import { PercentChange } from "../../coins/component/CoinItem";
 
 const { width } = Dimensions.get("window");
 
@@ -72,22 +72,40 @@ class CoinDetails extends Component<Props, State> {
                 <Text style={{ fontSize: 11, fontFamily: "lato", color: "grey" }}>We will be showing a chart here...</Text>
             </View>
             <View style={styles.percentChangeCard}>
-                {PercentChange(coin.percent_change_1h, "hourly")}
-                {PercentChange(coin.percent_change_24h, "daily")}
-                {PercentChange(coin.percent_change_7d, "weekly")}
+                {this.percentChange(coin.percent_change_1h, "hourly")}
+                {this.percentChange(coin.percent_change_24h, "daily")}
+                {this.percentChange(coin.percent_change_7d, "weekly")}
             </View>
             <View style={styles.supplyCard}>
                 {this.supply(coin.available_supply, "available")}
                 {this.supply(coin.max_supply, "max")}
                 {this.supply(coin.total_supply, "total")}
             </View>
-            <TouchableOpacity style={styles.fab} activeOpacity={0.8}>
+            {/* <TouchableOpacity style={styles.fab} activeOpacity={0.8}>
                 {coin.favorite
                     ? <Icon name="star" size={30} color="#fc5130" />
                     : <Icon name="star-border" size={30} color="#fc5130" />}
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
     );
+
+    private percentChange = (value: string, label: string) =>
+        <View style={styles.percentChange}>
+            {Number.parseFloat(value) > 0
+                ? <View style={styles.changeValue}>
+                    <Text style={styles.changeValueTextPositive}>
+                        {value}%
+                    </Text>
+                    <Icon name="arrow-upward" size={15} color="#3cb43c" />
+                </View>
+                : <View style={styles.changeValue}>
+                    <Text style={styles.changeValueTextNegative}>
+                        {value}%
+                    </Text>
+                    <Icon name="arrow-downward" size={15} color="#ff7040" />
+                </View>}
+            <Text style={styles.changeLabel}>{label}</Text>
+        </View>
 
     private supply = (value: string, label: string) =>
         <View style={styles.supply}>
@@ -232,6 +250,27 @@ const styles = StyleSheet.create({
         alignItems: "stretch",
         padding: 20,
         marginBottom: 15,
+    },
+    percentChange: {
+        alignItems: "center",
+    },
+    changeValue: {
+        flexDirection: "row",
+    },
+    changeValueTextPositive: {
+        fontFamily: "lato",
+        fontSize: 11,
+        color: "#3cb43c",
+    },
+    changeValueTextNegative: {
+        fontFamily: "lato",
+        fontSize: 11,
+        color: "#ff7040",
+    },
+    changeLabel: {
+        fontFamily: "lato",
+        fontSize: 11,
+        color: "#303036",
     },
     supplyCard: {
         flex: 0.1,

@@ -1,5 +1,5 @@
 import { Action, Coin } from "../types";
-import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../watchList/actions";
+import { REMOVE_FROM_WATCHLIST } from "../watchList/actions";
 import {
     FETCH_COINS_REQUESTED,
     FETCH_COINS_SUCCEEDED,
@@ -48,15 +48,7 @@ const reducer = (
                 error: payload,
                 data: [],
             };
-        case ADD_TO_FAVORITES:
-            return {
-                ...state,
-                data: state.data.map(x => {
-                    x.favorite = x.id === payload.id ? true : x.favorite;
-                    return x;
-                }),
-            };
-        case REMOVE_FROM_FAVORITES: {
+        case REMOVE_FROM_WATCHLIST: {
             return {
                 ...state,
                 data: state.data.map(x => {

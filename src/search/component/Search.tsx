@@ -13,15 +13,13 @@ import { Action } from "../../types";
 import { RootState, getAllCoins } from "../../rootReducer";
 import { Coin } from "../../types";
 import { StyleSheet } from "react-native";
-import { addToFavorites, removeFromFavorites } from "../../watchList/actions";
-import { fetchCoins } from "../../coins/actions";
+import { addToWatchlist } from "../../watchList/actions";
 import Icons from "../../utils/icons";
 import numeral from "numeral";
 
 interface Props {
     allCoins: Coin[];
-    addToFavorites: (coin: Coin) => Action;
-    removeFromFavorites: (coin: Coin) => Action;
+    addToWatchlist: (coin: Coin) => Action;
     navigation: any;
 }
 interface State {
@@ -36,6 +34,7 @@ class Search extends Component<Props, State> {
             searchText: "",
             searchResult: [...this.props.allCoins],
         };
+        console.log(this.state);
     }
 
     public render() {
@@ -47,7 +46,7 @@ class Search extends Component<Props, State> {
                 {!searchResult || searchResult.length === 0 ? (
                     <View style={styles.placeholderContainer}>
                         <Text style={styles.placeholderText}>
-                            We did not find the coin you searched for...
+                            We couln't find the coin you searched for...
                         </Text>
                     </View>
                 ) : (
@@ -94,7 +93,11 @@ class Search extends Component<Props, State> {
     );
 
     private renderItem = ({ item }) => (
-        <TouchableOpacity style={styles.item} activeOpacity={0.7}>
+        <TouchableOpacity style={styles.item} activeOpacity={0.7}
+            onPress={() => {
+                this.props.addToWatchlist(item);
+                this.props.navigation.goBack();
+            }}>
             <View style={styles.itemLeft}>
                 <View style={styles.itemSummary}>
                     <View style={styles.iconNameSymbol}>
@@ -157,7 +160,7 @@ const mergeProps = (stateToProps, dispatchToProps, ownProps) => ({
 
 export default connect(
     mapStateToProps,
-    { fetchCoins, addToFavorites, removeFromFavorites },
+    { addToWatchlist },
     mergeProps,
 )(Search);
 
@@ -277,7 +280,7 @@ const styles = StyleSheet.create({
     price: {
         fontSize: 18,
         fontFamily: "lato",
-        color: "#30bced",
+        color: "#303036",
         alignSelf: "center",
         right: 10,
     },

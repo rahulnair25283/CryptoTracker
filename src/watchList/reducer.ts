@@ -1,7 +1,7 @@
 import { Action, Coin } from "../types";
-import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "./actions";
+import { ADD_TO_WATCHLIST, REMOVE_FROM_WATCHLIST } from "./actions";
 
-export interface FavoritesState {
+export interface WatchlistState {
     data: Coin[];
 }
 
@@ -10,17 +10,17 @@ const initialState = {
 };
 
 const reducer = (
-    state: FavoritesState = initialState,
+    state: WatchlistState = initialState,
     action: Action,
-): FavoritesState => {
+): WatchlistState => {
     const { type, payload } = action;
 
     switch (type) {
-        case ADD_TO_FAVORITES:
+        case ADD_TO_WATCHLIST:
             return {
                 data: [...state.data, payload],
             };
-        case REMOVE_FROM_FAVORITES:
+        case REMOVE_FROM_WATCHLIST:
             return {
                 data: state.data.filter(x => x.id !== payload.id),
             };

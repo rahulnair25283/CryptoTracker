@@ -7,8 +7,8 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { connect } from "react-redux";
-import { RootState, getFavorites } from "../../rootReducer";
-import { addToFavorites, removeFromFavorites } from "../actions";
+import { RootState, getWatchlist } from "../../rootReducer";
+import { removeFromWatchlist } from "../actions";
 import { fetchCoins } from "../../coins/actions";
 import { Coin } from "../../types";
 import { Action } from "../../types";
@@ -16,9 +16,8 @@ import CoinItem from "../../coins/component/CoinItem";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface Props {
-    favorites: Coin[];
+    watchlist: Coin[];
     fetchCoins: () => Action;
-    addToFavorites: (coin: Coin) => Action;
     removeFromFavorites: (coin: Coin) => Action;
     navigation: any;
 }
@@ -41,11 +40,11 @@ class WatchList extends Component<Props, State> {
     );
 
     public render() {
-        const { favorites } = this.props;
+        const { watchlist } = this.props;
         return (
             <View style={styles.container}>
                 {this.renderHeader()}
-                {!favorites || favorites.length === 0 ? (
+                {!watchlist || watchlist.length === 0 ? (
                     <View style={styles.placeholderContainer}>
                         <Text style={styles.placeholderText}>
                             Hey noob, lets add some coins!
@@ -53,7 +52,7 @@ class WatchList extends Component<Props, State> {
                     </View>
                 ) : (
                         <FlatList
-                            data={favorites}
+                            data={watchlist}
                             keyExtractor={this.keyExtractor}
                             renderItem={this.renderItem}
                             style={styles.list}
@@ -72,7 +71,6 @@ class WatchList extends Component<Props, State> {
     private renderItem = ({ item }) => (
         <CoinItem
             data={item}
-            addToFavorites={this.props.addToFavorites}
             removeFromFavorites={this.props.removeFromFavorites}
             navigation={this.props.navigation}
         />
@@ -80,6 +78,23 @@ class WatchList extends Component<Props, State> {
 
     private keyExtractor = item => item.id;
 }
+
+
+const mapStateToProps = (state: RootState) => ({
+    watchlist: getWatchlist(state),
+});
+
+const mergeProps = (stateToProps, dispatchToProps, ownProps) => ({
+    ...ownProps,
+    ...stateToProps,
+    ...dispatchToProps,
+});
+
+export default connect(
+    mapStateToProps,
+    { fetchCoins, removeFromWatchlist },
+    mergeProps,
+)(WatchList);
 
 const styles = StyleSheet.create({
     container: {
@@ -132,19 +147,3 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     }
 });
-
-const mapStateToProps = (state: RootState) => ({
-    favorites: getFavorites(state),
-});
-
-const mergeProps = (stateToProps, dispatchToProps, ownProps) => ({
-    ...ownProps,
-    ...stateToProps,
-    ...dispatchToProps,
-});
-
-export default connect(
-    mapStateToProps,
-    { fetchCoins, addToFavorites, removeFromFavorites },
-    mergeProps,
-)(WatchList);
