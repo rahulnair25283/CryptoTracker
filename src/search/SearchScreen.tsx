@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Search from "./component/Search";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, Dimensions } from "react-native";
 import StatusBar from "../statusBar/StatusBar";
+import { ScaledSheet } from "react-native-size-matters";
 
 const { height } = Dimensions.get("window");
 
@@ -21,7 +22,7 @@ export default class SearchScreen extends Component<Props, State> {
     }
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     container: {
         backgroundColor: "#f9f9f9",
         height: height,

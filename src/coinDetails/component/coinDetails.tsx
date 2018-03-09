@@ -5,7 +5,7 @@ import FAIcon from "react-native-vector-icons/FontAwesome";
 import { Coin } from "../../types";
 import Icons from "../../utils/icons";
 import numeral from "numeral";
-// import { PercentChange } from "../../coins/component/CoinItem";
+import { ScaledSheet } from "react-native-size-matters";
 
 const { width } = Dimensions.get("window");
 
@@ -81,11 +81,6 @@ class CoinDetails extends Component<Props, State> {
                 {this.supply(coin.max_supply, "max")}
                 {this.supply(coin.total_supply, "total")}
             </View>
-            {/* <TouchableOpacity style={styles.fab} activeOpacity={0.8}>
-                {coin.favorite
-                    ? <Icon name="star" size={30} color="#fc5130" />
-                    : <Icon name="star-border" size={30} color="#fc5130" />}
-            </TouchableOpacity> */}
         </View>
     );
 
@@ -124,7 +119,7 @@ class CoinDetails extends Component<Props, State> {
 
 export default CoinDetails;
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     container: {
         flex: 1,
     },
@@ -132,7 +127,7 @@ const styles = StyleSheet.create({
         flex: 0.2,
         justifyContent: "center",
         alignItems: "flex-start",
-        paddingTop: 15,
+        paddingTop: "15@ms",
         backgroundColor: "#30bced",
     },
     buttonContainer: {
@@ -140,7 +135,7 @@ const styles = StyleSheet.create({
         width: width,
         justifyContent: "center",
         alignItems: "flex-end",
-        paddingRight: 10,
+        paddingRight: "10@ms",
     },
     content: {
         flex: 0.9,
@@ -152,17 +147,17 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     iconImage: {
-        height: 30,
-        width: 30,
-        paddingLeft: 10,
-        paddingRight: 10,
+        height: "30@ms",
+        width: "30@ms",
+        paddingLeft: "10@ms",
+        paddingRight: "10@ms",
     },
     symbol: {
         justifyContent: "center",
         alignItems: "center",
     },
     symbolText: {
-        fontSize: 30,
+        fontSize: "30@ms",
         fontFamily: "lato",
         color: "#ffffff",
         fontWeight: "bold",
@@ -172,15 +167,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     coinNameText: {
-        fontSize: 15,
+        fontSize: "15@ms",
         fontFamily: "lato",
         color: "#ffffff",
     },
     body: {
         flex: 1,
-        paddingTop: 10,
-        paddingLeft: 15,
-        paddingRight: 15,
+        paddingTop: "10@ms",
+        paddingLeft: "15@ms",
+        paddingRight: "15@ms",
     },
     priceCard: {
         flex: 0.25,
@@ -189,32 +184,32 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
         borderColor: "#e2e2e2",
         borderWidth: 0.4,
-        borderRadius: 10,
+        borderRadius: "10@ms",
         elevation: 0,
         shadowColor: "#000",
         shadowOffset: { width: 2, height: 5 },
         shadowOpacity: 0.1,
-        shadowRadius: 5,
-        padding: 10,
-        marginBottom: 15,
+        shadowRadius: "5@ms",
+        padding: "10@ms",
+        marginBottom: "15@ms",
     },
     priceText: {
-        fontSize: 45,
+        fontSize: "45@ms",
         fontFamily: "lato",
         color: "#30bced",
-        paddingBottom: 10,
+        paddingBottom: "10@ms",
     },
     marketCap: {
         justifyContent: "center",
         alignItems: "center",
     },
     marketCapText: {
-        fontSize: 13,
+        fontSize: "13@ms",
         fontFamily: "lato",
         color: "#303036",
     },
     marketCapLabel: {
-        fontSize: 11,
+        fontSize: "11@ms",
         fontFamily: "lato",
         color: "grey",
     },
@@ -223,14 +218,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
         borderColor: "#e2e2e2",
         borderWidth: 0.4,
-        borderRadius: 10,
+        borderRadius: "10@ms",
         elevation: 0,
         shadowColor: "#000",
         shadowOffset: { width: 2, height: 5 },
         shadowOpacity: 0.1,
         shadowRadius: 5,
-        padding: 10,
-        marginBottom: 15,
+        padding: "10@ms",
+        marginBottom: "15@ms",
         justifyContent: "center",
         alignItems: "center",
     },
@@ -239,7 +234,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
         borderColor: "#e2e2e2",
         borderWidth: 0.4,
-        borderRadius: 10,
+        borderRadius: "10@ms",
         elevation: 0,
         shadowColor: "#000",
         shadowOffset: { width: 2, height: 5 },
@@ -248,8 +243,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "stretch",
-        padding: 20,
-        marginBottom: 15,
+        padding: "20@ms",
+        marginBottom: "15@ms",
     },
     percentChange: {
         alignItems: "center",
@@ -259,17 +254,17 @@ const styles = StyleSheet.create({
     },
     changeValueTextPositive: {
         fontFamily: "lato",
-        fontSize: 11,
+        fontSize: "11@ms",
         color: "#3cb43c",
     },
     changeValueTextNegative: {
         fontFamily: "lato",
-        fontSize: 11,
+        fontSize: "11@ms",
         color: "#ff7040",
     },
     changeLabel: {
         fontFamily: "lato",
-        fontSize: 11,
+        fontSize: "11@ms",
         color: "#303036",
     },
     supplyCard: {
@@ -277,7 +272,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
         borderColor: "#e2e2e2",
         borderWidth: 0.4,
-        borderRadius: 10,
+        borderRadius: "10@ms",
         elevation: 0,
         shadowColor: "#000",
         shadowOffset: { width: 2, height: 5 },
@@ -286,7 +281,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "stretch",
-        padding: 20,
+        padding: "20@ms",
         marginBottom: 15,
     },
     supply: {
@@ -294,27 +289,12 @@ const styles = StyleSheet.create({
     },
     supplyValue: {
         fontFamily: "lato",
-        fontSize: 11,
+        fontSize: "11@ms",
         color: "#303036",
     },
     supplyLabel: {
         fontFamily: "lato",
-        fontSize: 11,
+        fontSize: "11@ms",
         color: "grey",
     },
-    fab: {
-        position: "absolute",
-        bottom: 10,
-        height: 50,
-        width: 50,
-        borderRadius: 25,
-        elevation: 10,
-        shadowColor: "#000",
-        shadowOffset: { width: 2, height: 5 },
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-        justifyContent: "center",
-        alignItems: "center",
-        alignSelf: "center",
-    }
 });

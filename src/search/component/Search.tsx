@@ -12,10 +12,10 @@ import { connect } from "react-redux";
 import { Action } from "../../types";
 import { RootState, getAllCoins } from "../../rootReducer";
 import { Coin } from "../../types";
-import { StyleSheet } from "react-native";
 import { addToWatchlist } from "../../watchList/actions";
 import Icons from "../../utils/icons";
 import numeral from "numeral";
+import { ScaledSheet } from "react-native-size-matters";
 
 interface Props {
     allCoins: Coin[];
@@ -164,16 +164,13 @@ export default connect(
     mergeProps,
 )(Search);
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     header: {
-        height: 40,
+        height: "60@ms",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingTop: 5,
-        paddingBottom: 5,
+        padding: "5@ms",
         backgroundColor: "#30bced",
         shadowOpacity: 0.3,
         shadowRadius: 1,
@@ -181,21 +178,21 @@ const styles = StyleSheet.create({
     },
     headerText: {
         flex: 0.9,
-        fontSize: 18,
+        fontSize: "18@ms",
         fontFamily: "lato",
         color: "#fffaff",
         textAlign: "center",
-        left: 15,
+        left: "15@ms",
     },
     searchBoxContainer: {
-        height: 40,
+        height: "60@ms",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 5,
-        paddingBottom: 5,
+        paddingLeft: "20@ms",
+        paddingRight: "20@ms",
+        paddingTop: "5@ms",
+        paddingBottom: "5@ms",
         backgroundColor: "#ffffff",
         shadowOpacity: 0.3,
         shadowRadius: 1,
@@ -206,7 +203,7 @@ const styles = StyleSheet.create({
         color: "#050401",
     },
     cancelSearchButton: {
-        marginRight: 5,
+        marginRight: "5@ms",
     },
     closeSearchButton: {
         flex: 0.1,
@@ -216,27 +213,27 @@ const styles = StyleSheet.create({
     placeholderContainer: {
         justifyContent: "center",
         alignItems: "center",
-        padding: 30,
+        padding: "30@ms",
     },
     placeholderText: {
-        fontSize: 12,
+        fontSize: "12@ms",
         fontFamily: "lato",
         color: "#303036",
         textAlign: "center",
     },
     list: {
-        marginTop: 15,
+        marginTop: "15@ms",
     },
     item: {
         flex: 1,
         flexDirection: "row",
-        marginLeft: 15,
-        marginRight: 15,
-        marginBottom: 15,
-        padding: 10,
+        marginLeft: "15@ms",
+        marginRight: "15@ms",
+        marginBottom: "15@ms",
+        padding: "10@ms",
         borderWidth: 0.4,
         borderColor: "#e2e2e2",
-        borderRadius: 10,
+        borderRadius: "10@ms",
         backgroundColor: "#ffffff",
         elevation: 0,
         shadowColor: "#000",
@@ -260,29 +257,29 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     iconImage: {
-        height: 40,
-        width: 40,
+        height: "40@ms",
+        width: "40@ms",
     },
     nameSymbol: {
         flexDirection: "column",
-        left: 10,
+        left: "10@ms",
     },
     symbol: {
         fontFamily: "lato",
         color: "#303036",
-        fontSize: 20,
+        fontSize: "20@ms",
     },
     name: {
         fontFamily: "lato",
         color: "#303036",
-        fontSize: 13,
+        fontSize: "13@ms",
     },
     price: {
-        fontSize: 18,
+        fontSize: "18@ms",
         fontFamily: "lato",
         color: "#303036",
         alignSelf: "center",
-        right: 10,
+        right: "10@ms",
     },
     itemRight: {
         flex: 0.05,

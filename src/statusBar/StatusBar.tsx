@@ -1,5 +1,6 @@
 import React from "react";
-import { View, StyleSheet, Platform } from "react-native";
+import { View, Platform } from "react-native";
+import { ScaledSheet } from "react-native-size-matters";
 
 interface Props {
   style: object;
@@ -9,9 +10,9 @@ const StatusBar = (props: Props) => (
   <View style={[styles.statusBar, props.style || {}]} />
 );
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   statusBar: {
-    height: Platform.OS === "ios" ? 20 : 0,
+    height: Platform.OS === "ios" ? "20@ms" : 0,
     backgroundColor: "#FFFFFF",
   },
 });

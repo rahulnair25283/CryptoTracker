@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
     View,
-    StyleSheet,
     Text,
     FlatList,
     TouchableOpacity,
@@ -14,6 +13,7 @@ import { Coin } from "../../types";
 import { Action } from "../../types";
 import CoinItem from "../../coins/component/CoinItem";
 import Icon from "react-native-vector-icons/MaterialIcons";
+import { ScaledSheet } from "react-native-size-matters";
 
 interface Props {
     watchlist: Coin[];
@@ -96,47 +96,47 @@ export default connect(
     mergeProps,
 )(WatchList);
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
     container: {
         flex: 1,
     },
     header: {
-        height: 40,
+        height: "60@ms",
         justifyContent: "center",
         alignItems: "center",
-        padding: 10,
+        padding: "10@ms",
         backgroundColor: "#30bced",
         shadowOpacity: 0.3,
         shadowRadius: 1,
         shadowOffset: { height: 1, width: 0 },
     },
     headerText: {
-        fontSize: 18,
+        fontSize: "18@ms",
         fontFamily: "lato",
         color: "#fffaff",
     },
     placeholderContainer: {
         justifyContent: "center",
         alignItems: "center",
-        padding: 30,
+        padding: "30@ms",
     },
     placeholderText: {
-        fontSize: 12,
+        fontSize: "12@ms",
         fontFamily: "lato",
         color: "#303036",
         textAlign: "center",
     },
     list: {
-        marginTop: 15,
+        marginTop: "15@ms",
     },
     fab: {
         position: "absolute",
-        bottom: 20,
-        right: 20,
-        height: 50,
-        width: 50,
+        bottom: "30@ms",
+        right: "30@ms",
+        height: "50@ms",
+        width: "50@ms",
         backgroundColor: "#30bced",
-        borderRadius: 25,
+        borderRadius: "25@ms",
         elevation: 5,
         shadowColor: "#000",
         shadowOffset: { width: 2, height: 5 },
