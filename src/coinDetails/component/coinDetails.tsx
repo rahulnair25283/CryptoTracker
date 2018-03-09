@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Image } from "react-native";
+import { View, TouchableOpacity, Text, Dimensions, Image } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import FAIcon from "react-native-vector-icons/FontAwesome";
 import { Coin } from "../../types";
