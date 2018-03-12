@@ -14,7 +14,7 @@ import { Coin } from "../../types";
 import { Action } from "../../types";
 import CoinItem from "../../coins/component/CoinItem";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { ScaledSheet, moderateScale } from "react-native-size-matters";
+import { ScaledSheet } from "react-native-size-matters";
 
 interface Props {
     watchlist: Coin[];
@@ -63,7 +63,7 @@ class WatchList extends Component<Props, State> {
                     style={styles.fab}
                     activeOpacity={0.7}
                     onPress={() => this.props.navigation.navigate("Search")}>
-                    <Icon name="add" size={moderateScale(25)} color="#ffffff" />
+                    <Icon name="add" size={25} color="#ffffff" />
                 </TouchableOpacity>
             </View>
         );
