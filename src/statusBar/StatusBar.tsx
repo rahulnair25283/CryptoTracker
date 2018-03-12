@@ -1,20 +1,23 @@
 import React from "react";
-import { View, Platform } from "react-native";
+import { View, Platform, StatusBar } from "react-native";
 import { ScaledSheet } from "react-native-size-matters";
 
 interface Props {
-  style: object;
+  style?: object;
 }
 
-const StatusBar = (props: Props) => (
-  <View style={[styles.statusBar, props.style || {}]} />
-);
+const AppStatusBar = (props: Props) => {
+  const platform = Platform.OS;
+  return platform === "ios"
+    ? <View style={[styles.statusBar, props.style || {}]} />
+    : <StatusBar backgroundColor="#2aa2cc" />
+};
 
 const styles = ScaledSheet.create({
   statusBar: {
-    height: Platform.OS === "ios" ? "20@ms" : 0,
-    backgroundColor: "#FFFFFF",
+    height: "20@ms",
+    backgroundColor: "#2aa2cc",
   },
 });
 
-export default StatusBar;
+export default AppStatusBar;

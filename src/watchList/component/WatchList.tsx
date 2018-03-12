@@ -4,6 +4,7 @@ import {
     Text,
     FlatList,
     TouchableOpacity,
+    Platform
 } from "react-native";
 import { connect } from "react-redux";
 import { RootState, getWatchlist } from "../../rootReducer";
@@ -13,7 +14,7 @@ import { Coin } from "../../types";
 import { Action } from "../../types";
 import CoinItem from "../../coins/component/CoinItem";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { ScaledSheet } from "react-native-size-matters";
+import { ScaledSheet, moderateScale } from "react-native-size-matters";
 
 interface Props {
     watchlist: Coin[];
@@ -47,7 +48,7 @@ class WatchList extends Component<Props, State> {
                 {!watchlist || watchlist.length === 0 ? (
                     <View style={styles.placeholderContainer}>
                         <Text style={styles.placeholderText}>
-                            Hey noob, lets add some coins!
+                            Hey noob! Click on that big blue button at the bottom to add some coins to your watchlist...
                         </Text>
                     </View>
                 ) : (
@@ -62,7 +63,7 @@ class WatchList extends Component<Props, State> {
                     style={styles.fab}
                     activeOpacity={0.7}
                     onPress={() => this.props.navigation.navigate("Search")}>
-                    <Icon name="add" size={25} color="#ffffff" />
+                    <Icon name="add" size={moderateScale(25)} color="#ffffff" />
                 </TouchableOpacity>
             </View>
         );
@@ -96,6 +97,8 @@ export default connect(
     mergeProps,
 )(WatchList);
 
+const platform = Platform.OS;
+
 const styles = ScaledSheet.create({
     container: {
         flex: 1,
@@ -118,7 +121,7 @@ const styles = ScaledSheet.create({
     placeholderContainer: {
         justifyContent: "center",
         alignItems: "center",
-        padding: "30@ms",
+        padding: "50@ms",
     },
     placeholderText: {
         fontSize: "12@ms",
@@ -131,7 +134,7 @@ const styles = ScaledSheet.create({
     },
     fab: {
         position: "absolute",
-        bottom: "30@ms",
+        bottom: platform === "ios" ? "30@ms" : "50@ms",
         right: "30@ms",
         height: "50@ms",
         width: "50@ms",

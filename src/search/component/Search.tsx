@@ -63,7 +63,7 @@ class Search extends Component<Props, State> {
 
     private renderHeader = () => (
         <View style={styles.header}>
-            <Text style={styles.headerText}>Search</Text>
+            <Text style={styles.headerText}>Coins</Text>
             <TouchableOpacity
                 style={styles.closeSearchButton}
                 onPress={() => this.props.navigation.goBack()}>
@@ -76,12 +76,12 @@ class Search extends Component<Props, State> {
         <View style={styles.searchBoxContainer}>
             <TextInput
                 placeholder={"Type to start searching..."}
-                autoFocus
                 autoCapitalize="none"
                 autoCorrect={false}
                 style={styles.searchBox}
                 onChangeText={searchText => this.search(searchText)}
                 value={this.state.searchText}
+                underlineColorAndroid="transparent"
             />
             {this.state.searchText ? <TouchableOpacity
                 style={styles.cancelSearchButton}
@@ -194,6 +194,7 @@ const styles = ScaledSheet.create({
         paddingTop: "5@ms",
         paddingBottom: "5@ms",
         backgroundColor: "#ffffff",
+        elevation: 1,
         shadowOpacity: 0.3,
         shadowRadius: 1,
         shadowOffset: { height: 1, width: 0 },
@@ -235,11 +236,11 @@ const styles = ScaledSheet.create({
         borderColor: "#e2e2e2",
         borderRadius: "10@ms",
         backgroundColor: "#ffffff",
-        elevation: 0,
+        elevation: 4,
         shadowColor: "#000",
-        shadowOffset: { width: 2, height: 5 },
+        shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.1,
-        shadowRadius: 5,
+        shadowRadius: 3,
     },
     itemLeft: {
         flex: 0.95,

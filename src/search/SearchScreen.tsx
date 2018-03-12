@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Search from "./component/Search";
 import { View, Dimensions } from "react-native";
-import StatusBar from "../statusBar/StatusBar";
+import AppStatusBar from "../statusBar/StatusBar";
 import { ScaledSheet } from "react-native-size-matters";
 
 const { height } = Dimensions.get("window");
@@ -15,7 +15,7 @@ export default class SearchScreen extends Component<Props, State> {
     public render() {
         return (
             <View style={styles.container}>
-                <StatusBar style={styles.statusBarBackground} />
+                <AppStatusBar />
                 <Search navigation={this.props.navigation} />
             </View>
         );

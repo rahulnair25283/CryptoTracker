@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Dimensions } from "react-native";
-import StatusBar from "../statusBar/StatusBar";
+import AppStatusBar from "../statusBar/StatusBar";
 import CoinDetails from "./component/coinDetails";
 import { ScaledSheet } from "react-native-size-matters";
 
@@ -18,7 +18,7 @@ export default class CoinDetailsScreen extends Component<Props> {
     public render() {
         return (
             <View style={styles.container}>
-                <StatusBar style={styles.statusBarBackground} />
+                <AppStatusBar />
                 <CoinDetails navigation={this.props.navigation} />
             </View>
         );
